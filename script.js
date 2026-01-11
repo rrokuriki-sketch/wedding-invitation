@@ -21,6 +21,21 @@ const GOOGLE_FORM_CONFIG = {
 // ===========================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Hero Image Carousel - Auto slideshow every 3 seconds
+    const slides = document.querySelectorAll('.hero-slide');
+    let currentSlide = 0;
+
+    function showNextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    // Start slideshow if slides exist
+    if (slides.length > 0) {
+        setInterval(showNextSlide, 3000); // Change slide every 3 seconds
+    }
+
     // Navigation link smooth scroll
     const navLinks = document.querySelectorAll('.nav-link');
 
@@ -58,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px'
-},
 };
 
 const observer = new IntersectionObserver((entries) => {
