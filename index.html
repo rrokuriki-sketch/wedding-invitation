@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
+<html lang="ja"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation - Ryo & Mihiro</title>
+    <title>Wedding Invitation - Ryō & Mihiro</title>
     <meta name="description" content="結婚式・披露宴・二次会のご案内">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="">
     <!-- Header Navigation -->
     <header class="header" id="header">
         <nav class="nav">
@@ -28,9 +27,13 @@
 
     <!-- First View Section -->
     <section class="hero" id="hero">
+        <picture class="hero-image">
+            <source media="(min-width: 768px)" srcset="images/hero-pc.jpg">
+            <img src="images/hero-sp.jpg" alt="Wedding Photo">
+        </picture>
         <div class="hero-content">
             <h1 class="hero-title">Wedding Invitation</h1>
-            <p class="hero-names">Ryo & Mihiro</p>
+            <p class="hero-names">Ryō & Mihiro</p>
             <div class="hero-details">
                 <p class="hero-date">2026年4月4日</p>
                 <p class="hero-venue">東京會舘 本舘（丸の内）</p>
@@ -58,10 +61,10 @@
             <div class="couple-section">
                 <div class="couple-card">
                     <div class="couple-photo">
-                        <img src="images/photo1.jpg" alt="和装写真">
+                        <img src="images/profile-ryo.jpg" alt="涼プロフィール写真">
                     </div>
                     <div class="couple-message">
-                        <h3 class="couple-name">Ryo Kuriki</h3>
+                        <h3 class="couple-name">Ryō Kuriki</h3>
                         <p class="couple-text">
                             大切な皆様に晴れの日をご案内できることを<br>
                             心より嬉しく思っております<br>
@@ -72,7 +75,7 @@
 
                 <div class="couple-card">
                     <div class="couple-photo">
-                        <img src="images/photo2.jpg" alt="洋装写真">
+                        <img src="images/profile-mihiro.jpg" alt="美洋プロフィール写真">
                     </div>
                     <div class="couple-message">
                         <h3 class="couple-name">Mihiro Nemoto</h3>
@@ -121,7 +124,7 @@
                             <dt>アクセス</dt>
                             <dd>
                                 JR「東京駅」丸の内南口より徒歩5分<br>
-                                東京メトロ千代田線「二重橋前駅」3番出口直結
+                                東京メトロ千代田線「二二橋前駅」3番出口直結
                             </dd>
 
                             <dt>ドレスコード</dt>
@@ -140,16 +143,19 @@
                 <div class="info-text">
                     <dl class="info-list">
                         <dt>開催日時</dt>
-                        <dd>2026年4月4日（金）</dd>
+                        <dd>2026年4月4日（土）</dd>
 
                         <dt>開始時間</dt>
-                        <dd>19:00</dd>
+                        <dd>20:30～22:30<br><span class="venue-address">（受付開始 20:00）</span></dd>
 
                         <dt>会場</dt>
                         <dd>
-                            東京會舘 本舘（丸の内）<br>
-                            <span class="venue-address">会場詳細は後日ご案内いたします</span>
+                            東京ビアホール＆ビアテラス14<br>
+                            <span class="venue-address">〒100-0005 東京都千代田区丸の内1-4-1 丸の内永楽ビルディング 2F</span>
                         </dd>
+
+                        <dt>会費</dt>
+                        <dd>5,000円<br><span class="venue-address">※当日現金でのお支払い</span></dd>
                     </dl>
                     <p class="info-note">
                         二次会はカジュアルな雰囲気で行います。<br>
@@ -176,14 +182,14 @@
             <form class="rsvp-form" id="rsvpForm">
                 <div class="form-group">
                     <label for="name" class="form-label">お名前 <span class="required">*</span></label>
-                    <input type="text" id="name" name="name" class="form-input" required>
+                    <input type="text" id="name" name="name" class="form-input" required="">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">披露宴 <span class="required">*</span></label>
                     <div class="radio-group">
                         <label class="radio-label">
-                            <input type="radio" name="reception" value="出席" required>
+                            <input type="radio" name="reception" value="出席" required="">
                             <span>出席</span>
                         </label>
                         <label class="radio-label">
@@ -197,7 +203,7 @@
                     <label class="form-label">二次会 <span class="required">*</span></label>
                     <div class="radio-group">
                         <label class="radio-label">
-                            <input type="radio" name="party" value="出席" required>
+                            <input type="radio" name="party" value="出席" required="">
                             <span>出席</span>
                         </label>
                         <label class="radio-label">
@@ -237,10 +243,11 @@
                 ご多用中のところ恐縮ではございますが<br>
                 何卒よろしくお願い申し上げます
             </p>
-            <p class="footer-copyright">&copy; 2026 Ryo & Mihiro Wedding</p>
+            <p class="footer-copyright">© 2026 Ryō & Mihiro Wedding</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
-</body>
-</html>
+
+
+</body></html>
