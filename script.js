@@ -1,30 +1,35 @@
 // ===========================
 // Google Form Configuration
 // ===========================
+
 const GOOGLE_FORM_CONFIG = {
     // フォームのAction URL
     formActionUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScXMIIKCc7n-oQCM5m-4D0bFX4xjoECj7xmQaubg9KjJ9bdPA/formResponse',
+
     // 各項目のEntry ID
     entryIds: {
-        name: 'entry.559352220',      // お名前
-        reception: 'entry.877086558', // 披露宴（出欠）
-        party: 'entry.816037791',     // 二次会（出欠）
-        allergy: 'entry.1597978308',   // アレルギー
-        address: 'entry.998262904'    // お住まい（住所）
+        name: 'entry.559352220',           // お名前
+        reception: 'entry.877086558',       // 披露宴（出欠）
+        party: 'entry.816037791',           // 二次会（出欠）
+        allergy: 'entry.1597978308',        // アレルギー
+        address: 'entry.998262904'          // お住まい（住所）
     }
 };
 
 // ===========================
 // Smooth Scroll Navigation
 // ===========================
+
 document.addEventListener('DOMContentLoaded', () => {
     // Navigation link smooth scroll
     const navLinks = document.querySelectorAll('.nav-link');
+
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.getAttribute('href');
             const targetSection = document.querySelector(targetId);
+
             if (targetSection) {
                 targetSection.scrollIntoView({
                     behavior: 'smooth',
@@ -36,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Header background on scroll
     const header = document.getElementById('header');
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
             header.classList.add('scrolled');
@@ -48,9 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===========================
 // Scroll Animation
 // ===========================
+
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px'
+},
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -73,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===========================
 // RSVP Form Submission
 // ===========================
+
 document.addEventListener('DOMContentLoaded', () => {
     const rsvpForm = document.getElementById('rsvpForm');
     const thankYouMessage = document.getElementById('thankYou');
