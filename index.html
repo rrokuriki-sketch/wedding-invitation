@@ -12,7 +12,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="">
+    <!-- Visual Effects Layers -->
+    <div class="grain-overlay"></div>
+    <div class="light-overlay"></div>
+    <div class="particles-container" id="particles"></div>
+
     <!-- Header Navigation -->
     <header class="header" id="header">
         <nav class="nav">
@@ -56,10 +61,10 @@
     <section class="message" id="message">
         <div class="container">
             <div class="section-header">
-                <p class="section-subtitle">Message</p>
+                <p class="section-subtitle reveal-text">Message</p>
             </div>
             <div class="message-content">
-                <p class="message-text">
+                <p class="message-text reveal-text">
                     皆様にはご健勝のこととお慶び申し上げます<br>
                     このたび　私たちは結婚式を挙げることになりました<br>
                     つきましては　親しい皆様の末永いお力添えをいただきたく<br>
@@ -70,7 +75,7 @@
             </div>
 
             <div class="couple-section">
-                <div class="couple-card">
+                <div class="couple-card reveal-text">
                     <div class="couple-photo">
                         <img src="images/profile-ryo.jpg" alt="涼プロフィール写真">
                     </div>
@@ -84,7 +89,7 @@
                     </div>
                 </div>
 
-                <div class="couple-card">
+                <div class="couple-card reveal-text">
                     <div class="couple-photo">
                         <img src="images/profile-mihiro.jpg" alt="美洋プロフィール写真">
                     </div>
@@ -104,11 +109,11 @@
     <section class="info" id="info">
         <div class="container">
             <div class="section-header">
-                <p class="section-subtitle">Information</p>
+                <p class="section-subtitle reveal-text">Information</p>
             </div>
 
             <!-- Wedding Reception -->
-            <div class="info-card">
+            <div class="info-card reveal-text">
                 <h2 class="info-title">披露宴のご案内</h2>
                 <div class="info-details">
                     <div class="info-photo">
@@ -149,7 +154,7 @@
             </div>
 
             <!-- After Party -->
-            <div class="info-card">
+            <div class="info-card reveal-text">
                 <h2 class="info-title">二次会のご案内</h2>
                 <div class="info-text">
                     <dl class="info-list">
@@ -181,22 +186,22 @@
     <section class="rsvp" id="rsvp">
         <div class="container">
             <div class="section-header">
-                <p class="section-subtitle">RSVP</p>
-                <h2 class="section-title">ご出欠のお返事</h2>
+                <p class="section-subtitle reveal-text">RSVP</p>
+                <h2 class="section-title reveal-text">ご出欠のお返事</h2>
             </div>
 
-            <div class="rsvp-intro">
+            <div class="rsvp-intro reveal-text">
                 <p>お手数ではございますがご出欠情報のご登録をお願い申し上げます</p>
                 <p class="rsvp-deadline">2026年3月5日までにご一報をお願いいたします</p>
             </div>
 
             <form class="rsvp-form" id="rsvpForm">
-                <div class="form-group">
+                <div class="form-group reveal-text">
                     <label for="name" class="form-label">お名前 <span class="required">*</span></label>
                     <input type="text" id="name" name="name" class="form-input" required="">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group reveal-text">
                     <label class="form-label">披露宴 <span class="required">*</span></label>
                     <div class="radio-group">
                         <label class="radio-label">
@@ -210,7 +215,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group reveal-text">
                     <label class="form-label">二次会 <span class="required">*</span></label>
                     <div class="radio-group">
                         <label class="radio-label">
@@ -224,12 +229,12 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group reveal-text">
                     <label for="allergy" class="form-label">アレルギー</label>
                     <textarea id="allergy" name="allergy" class="form-textarea" rows="2" placeholder="アレルギーがある場合はご記入ください"></textarea>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group reveal-text">
                     <label for="address" class="form-label">お住まい（住所）</label>
                     <input type="text" id="address" name="address" class="form-input" placeholder="都道府県・市区町村">
                 </div>
@@ -259,4 +264,5 @@
     </footer>
 
     <script src="script.js"></script>
+
 </body></html>
