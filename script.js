@@ -17,10 +17,35 @@ const GOOGLE_FORM_CONFIG = {
 };
 
 // ===========================
-// Smooth Scroll Navigation
+// Smooth Scroll Navigation & Cinematic FX
 // ===========================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Floating Particles Generation
+    const particlesContainer = document.getElementById('particles');
+    if (particlesContainer) {
+        const particleCount = 20;
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Random positions and animations
+            const size = Math.random() * 5 + 2 + 'px';
+            particle.style.width = size;
+            particle.style.height = size;
+            
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            
+            const duration = Math.random() * 20 + 10 + 's';
+            const delay = Math.random() * 10 + 's';
+            particle.style.animation = `float ${duration} ease-in-out ${delay} infinite`;
+            particle.style.opacity = Math.random() * 0.4 + 0.1;
+            
+            particlesContainer.appendChild(particle);
+        }
+    }
+
     // Hero Image Carousel - Auto slideshow every 3 seconds
     const slides = document.querySelectorAll('.hero-slide');
     let currentSlide = 0;
@@ -64,33 +89,29 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.remove('scrolled');
         }
     });
-});
 
-// ===========================
-// Scroll Animation
-// ===========================
+    // Intersection Observer for Cinematic Reveals
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px'
-};
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
-
-// Observe sections for fade-in animation
-document.addEventListener('DOMContentLoaded', () => {
-    const sections = document.querySelectorAll('.message, .info, .rsvp');
-    sections.forEach(section => {
-        section.classList.add('fade-in');
-        observer.observe(section);
+    // Observe elements for reveal animation
+    const revealElements = document.querySelectorAll('.section-title, .section-subtitle, .message-text, .couple-card, .info-card, .rsvp-intro, .form-group');
+    revealElements.forEach((el) => {
+        el.classList.add('reveal-text');
+        observer.observe(el);
     });
 });
+
 
 // ===========================
 // RSVP Form Submission
@@ -128,8 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 // Submit to Google Form
-                // Note: Using 'no-cors' mode to avoid CORS issues
-                // The request will succeed but we won't get a response
                 await fetch(GOOGLE_FORM_CONFIG.formActionUrl, {
                     method: 'POST',
                     body: googleFormData,
