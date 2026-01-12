@@ -1,50 +1,82 @@
 // ===========================
 // Google Form Configuration
 // ===========================
-
 const GOOGLE_FORM_CONFIG = {
     // フォームのAction URL
     formActionUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScXMIIKCc7n-oQCM5m-4D0bFX4xjoECj7xmQaubg9KjJ9bdPA/formResponse',
-
     // 各項目のEntry ID
     entryIds: {
-        name: 'entry.559352220',           // お名前
-        reception: 'entry.877086558',       // 披露宴（出欠）
-        party: 'entry.816037791',           // 二次会（出欠）
-        allergy: 'entry.1597978308',        // アレルギー
-        address: 'entry.998262904'          // お住まい（住所）
+        name: 'entry.559352220', // お名前
+        reception: 'entry.877086558', // 披露宴（出欠）
+        party: 'entry.816037791', // 二次会（出欠）
+        allergy: 'entry.1597978308', // アレルギー
+        address: 'entry.998262904' // お住まい（住所）
     }
 };
 
 // ===========================
-// Smooth Scroll Navigation & Cinematic FX
+// Particle Effects System (Sakura Theme)
 // ===========================
+class ParticleSystem {
+    constructor() {
+        this.container = document.getElementById('particles');
+        if (!this.container) return;
+        this.initParticles();
+    }
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Floating Particles Generation
-    const particlesContainer = document.getElementById('particles');
-    if (particlesContainer) {
-        const particleCount = 20;
+    initParticles() {
+        this.container.innerHTML = '';
+        const particleCount = 25;
         for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            
-            // Random positions and animations
-            const size = Math.random() * 5 + 2 + 'px';
-            particle.style.width = size;
-            particle.style.height = size;
-            
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = Math.random() * 100 + '%';
-            
-            const duration = Math.random() * 20 + 10 + 's';
-            const delay = Math.random() * 10 + 's';
-            particle.style.animation = `float ${duration} ease-in-out ${delay} infinite`;
-            particle.style.opacity = Math.random() * 0.4 + 0.1;
-            
-            particlesContainer.appendChild(particle);
+            this.createParticle();
         }
     }
+
+    createParticle() {
+        const particle = document.createElement('div');
+        particle.style.position = 'absolute';
+
+        // Size: varied
+        const size = Math.random() * 8 + 4 + 'px';
+        particle.style.width = size;
+        particle.style.height = size;
+
+        // Shape: Petal or Dot
+        if (Math.random() > 0.4) {
+            particle.style.borderRadius = '50% 0 50% 0'; // Petal
+            particle.style.transform = `rotate(${Math.random() * 360}deg)`;
+        } else {
+            particle.style.borderRadius = '50%';
+        }
+
+        // Position
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * -20 + '%'; // Start above viewport
+
+        // Color: Gold or Sakura
+        if (Math.random() > 0.5) {
+            particle.style.background = '#e6d370'; // Gold
+            particle.style.opacity = Math.random() * 0.4 + 0.1;
+        } else {
+            particle.style.background = '#fddde6'; // Sakura Pink
+            particle.style.opacity = Math.random() * 0.5 + 0.2;
+        }
+
+        // Animation
+        const duration = Math.random() * 10 + 10 + 's';
+        const delay = Math.random() * 15 + 's';
+        particle.style.animation = `sakuraFall ${duration} linear ${delay} infinite`;
+
+        this.container.appendChild(particle);
+    }
+}
+
+// ===========================
+// Smooth Scroll Navigation & Cinematic FX
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Particles
+    new ParticleSystem();
 
     // Hero Image Carousel - Auto slideshow every 3 seconds
     const slides = document.querySelectorAll('.hero-slide');
@@ -63,13 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Navigation link smooth scroll
     const navLinks = document.querySelectorAll('.nav-link');
-
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-
             if (targetSection) {
                 targetSection.scrollIntoView({
                     behavior: 'smooth',
@@ -81,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Header background on scroll
     const header = document.getElementById('header');
-
     window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
             header.classList.add('scrolled');
@@ -104,19 +133,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    // Observe elements for reveal animation
+    // Observe text elements
     const revealElements = document.querySelectorAll('.section-title, .section-subtitle, .message-text, .couple-card, .info-card, .rsvp-intro, .form-group');
-    revealElements.forEach((el) => {
+    revealElements.forEach((el, index) => {
         el.classList.add('reveal-text');
         observer.observe(el);
     });
 });
 
-
 // ===========================
 // RSVP Form Submission
 // ===========================
-
 document.addEventListener('DOMContentLoaded', () => {
     const rsvpForm = document.getElementById('rsvpForm');
     const thankYouMessage = document.getElementById('thankYou');
@@ -149,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 // Submit to Google Form
+                // Note: Using 'no-cors' mode to avoid CORS issues
                 await fetch(GOOGLE_FORM_CONFIG.formActionUrl, {
                     method: 'POST',
                     body: googleFormData,
@@ -164,7 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     behavior: 'smooth',
                     block: 'center'
                 });
-
             } catch (error) {
                 console.error('Error submitting form:', error);
                 alert('送信中にエラーが発生しました。しばらくしてから再度お試しください。');
