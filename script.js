@@ -12,65 +12,129 @@ const GOOGLE_FORM_CONFIG = {
     }
 };
 
-// ===========================
-// Particle Effects System (Sakura Theme)
-// ===========================
-class ParticleSystem {
-    constructor() {
-        this.container = document.getElementById('particles');
-        if (!this.container) return;
-        this.initParticles();
+/**
+ * Main Initialization Function
+ * Executed via multiple triggers to ensure it runs exactly once.
+ */
+let isInitialized = false;
+
+function initializeApp() {
+    if (isInitialized) return;
+    isInitialized = true;
+    console.log("Wedding Invitation App: Initializing...");
+
+    // 1. Initialize Particles (with Error Handling)
+    try {
+        initParticles();
+    } catch (e) {
+        console.error("Particle System Error:", e);
     }
-    initParticles() {
-        this.container.innerHTML = '';
-        const particleCount = 25;
-        for (let i = 0; i < particleCount; i++) {
-            this.createParticle();
-        }
+
+    // 2. Initialize Hero Slideshow
+    try {
+        initSlideshow();
+    } catch (e) {
+        console.error("Slideshow Error:", e);
     }
-    createParticle() {
-        const particle = document.createElement('div');
-        particle.style.position = 'absolute';
-        const size = Math.random() * 8 + 4 + 'px';
-        particle.style.width = size;
-        particle.style.height = size;
-        if (Math.random() > 0.4) {
-            particle.style.borderRadius = '50% 0 50% 0';
-            particle.style.transform = `rotate(${Math.random() * 360}deg)`;
-        } else {
-            particle.style.borderRadius = '50%';
-        }
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * -20 + '%';
-        if (Math.random() > 0.5) {
-            particle.style.background = '#e6d370';
-            particle.style.opacity = Math.random() * 0.4 + 0.1;
-        } else {
-            particle.style.background = '#fddde6';
-            particle.style.opacity = Math.random() * 0.5 + 0.2;
-        }
-        const duration = Math.random() * 10 + 10 + 's';
-        const delay = Math.random() * 15 + 's';
-        particle.style.animation = `sakuraFall ${duration} linear ${delay} infinite`;
-        this.container.appendChild(particle);
+
+    // 3. Initialize Scroll Functions (Nav & Header)
+    try {
+        initScrollFeatures();
+    } catch (e) {
+        console.error("Scroll Features Error:", e);
     }
+
+    // 4. Initialize Scroll Reveal Animations
+    try {
+        initScrollReveal();
+    } catch (e) {
+        // Fallback: Make everything visible if observer fails
+        document.querySelectorAll('.reveal-text').forEach(el => el.style.opacity = '1');
+        console.error("Scroll Reveal Error:", e);
+    }
+
+    // 5. Initialize Form
+    try {
+        initForm();
+    } catch (e) {
+        console.error("Form Initialization Error:", e);
+    }
+
+    console.log("Wedding Invitation App: Initialization Complete");
 }
 
 // ===========================
-// Initialize on page load
+// Feature Implementations
 // ===========================
-(function init() {
-    new ParticleSystem();
+
+function initParticles() {
+    const container = document.getElementById('particles');
+    if (!container) return;
+
+    container.innerHTML = '';
+    const particleCount = 25;
+
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.style.position = 'absolute';
+
+        // Random size
+        const size = Math.random() * 8 + 4 + 'px';
+        particle.style.width = size;
+        particle.style.height = size;
+
+        // Shape & Color
+        if (Math.random() > 0.4) {
+            particle.style.borderRadius = '50% 0 50% 0'; // Petal
+            particle.style.transform = `rotate(${Math.random() * 360}deg)`;
+        } else {
+            particle.style.borderRadius = '50%'; // Dot
+        }
+
+        if (Math.random() > 0.5) {
+            particle.style.background = '#e6d370'; // Gold
+            particle.style.opacity = Math.random() * 0.4 + 0.1;
+        } else {
+            particle.style.background = '#fddde6'; // Sakura
+            particle.style.opacity = Math.random() * 0.5 + 0.2;
+        }
+
+        // Animation
+        const duration = Math.random() * 10 + 10 + 's';
+        const delay = Math.random() * 15 + 's';
+        particle.style.animation = `sakuraFall ${duration} linear ${delay} infinite`;
+
+        // Positioning
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * -20 + '%';
+
+        container.appendChild(particle);
+    }
+}
+
+function initSlideshow() {
     const slides = document.querySelectorAll('.hero-slide');
+    if (slides.length === 0) return;
+
     let currentSlide = 0;
+
+    // Ensure first slide is active
+    slides.forEach((slide, index) => {
+        if (index === 0) slide.classList.add('active');
+        else slide.classList.remove('active');
+    });
+
     function showNextSlide() {
         slides[currentSlide].classList.remove('active');
         currentSlide = (currentSlide + 1) % slides.length;
         slides[currentSlide].classList.add('active');
     }
-    if (slides.length > 0) {
-        setInterval(showNextSlide, 6000);
-    }
+
+    setInterval(showNextSlide, 6000);
+}
+
+function initScrollFeatures() {
+    // Smooth Scroll for Nav Links
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -82,39 +146,60 @@ class ParticleSystem {
             }
         });
     });
+
+    // Header Background Toggle
     const header = document.getElementById('header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
+}
+
+function initScrollReveal() {
     const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+
+    if (!('IntersectionObserver' in window)) {
+        // Fallback for primitive browsers
+        document.querySelectorAll('.reveal-text').forEach(el => el.classList.add('visible'));
+        return;
+    }
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Once visible, stop observing
             }
         });
     }, observerOptions);
+
     const revealElements = document.querySelectorAll('.section-title, .section-subtitle, .message-text, .couple-card, .info-card, .rsvp-intro, .form-group');
     revealElements.forEach((el) => {
         el.classList.add('reveal-text');
         observer.observe(el);
     });
-})();
+}
 
-// ===========================
-// RSVP Form Submission
-// ===========================
-(function initForm() {
+function initForm() {
     const rsvpForm = document.getElementById('rsvpForm');
     const thankYouMessage = document.getElementById('thankYou');
+
     if (rsvpForm) {
         rsvpForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(rsvpForm);
+
+            // Validation
+            if (!formData.get('name') || !formData.get('reception') || !formData.get('party')) {
+                alert('お名前と出欠のご回答は必須項目です。');
+                return;
+            }
+
             const googleFormData = new FormData();
             const entries = GOOGLE_FORM_CONFIG.entryIds;
             googleFormData.append(entries.name, formData.get('name'));
@@ -123,24 +208,37 @@ class ParticleSystem {
             googleFormData.append(entries.allergy, formData.get('allergy') || '');
             googleFormData.append(entries.address, formData.get('address') || '');
 
-            if (!formData.get('name') || !formData.get('reception') || !formData.get('party')) {
-                alert('お名前と出欠のご回答は必須項目です。');
-                return;
-            }
-
             try {
                 await fetch(GOOGLE_FORM_CONFIG.formActionUrl, {
                     method: 'POST',
                     body: googleFormData,
                     mode: 'no-cors'
                 });
+
                 rsvpForm.style.display = 'none';
-                thankYouMessage.style.display = 'block';
-                thankYouMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                if (thankYouMessage) {
+                    thankYouMessage.style.display = 'block';
+                    thankYouMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Form Submit Error:', error);
                 alert('送信エラーが発生しました。');
             }
         });
     }
-})();
+}
+
+// ===========================
+// Triggers (Redundant for Safety)
+// ===========================
+
+// 1. Immediate check
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initializeApp();
+}
+
+// 2. DOMContentLoaded listener
+document.addEventListener('DOMContentLoaded', initializeApp);
+
+// 3. Window Load listener (Ultimate fallback)
+window.addEventListener('load', initializeApp);
