@@ -1,4 +1,6 @@
-<html lang="ja"><head>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding Invitation - Ryō & Mihiro</title>
@@ -12,7 +14,7 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="">
+<body>
     <!-- Visual Effects Layers -->
     <div class="grain-overlay"></div>
     <div class="light-overlay"></div>
@@ -127,7 +129,7 @@
                             <dd>2026年4月4日（土）</dd>
 
                             <dt>受付・集合</dt>
-                            <dd>13:55 3階親族控室</dd>
+                            <dd>13:55</dd>
 
                             <dt>挙式開始</dt>
                             <dd>15:15</dd>
@@ -150,7 +152,7 @@
                             <dd>平服でお越しください</dd>
                         </dl>
                         <p class="info-note">
-                            ※当日は3階クロークをご利用ください
+                            ※当日は7階クロークをご利用ください
                         </p>
                     </div>
                 </div>
@@ -174,14 +176,14 @@
             <form class="rsvp-form" id="rsvpForm">
                 <div class="form-group reveal-text">
                     <label for="name" class="form-label">お名前 <span class="required">*</span></label>
-                    <input type="text" id="name" name="name" class="form-input" required="">
+                    <input type="text" id="name" name="name" class="form-input" required>
                 </div>
 
                 <div class="form-group reveal-text">
                     <label class="form-label">披露宴 <span class="required">*</span></label>
                     <div class="radio-group">
                         <label class="radio-label">
-                            <input type="radio" name="reception" value="出席" required="">
+                            <input type="radio" name="reception" value="出席" required>
                             <span>出席</span>
                         </label>
                         <label class="radio-label">
@@ -197,8 +199,8 @@
                 </div>
 
                 <div class="form-group reveal-text">
-                    <label for="address" class="form-label">お住まい（住所）</label>
-                    <input type="text" id="address" name="address" class="form-input" placeholder="都道府県・市区町村">
+                    <label for="address" class="form-label">お住まい（住所） <span class="required">*</span></label>
+                    <input type="text" id="address" name="address" class="form-input" placeholder="都道府県・市区町村" required>
                 </div>
 
                 <button type="submit" class="form-submit">送信する</button>
@@ -226,6 +228,5 @@
     </footer>
 
     <script src="script.js"></script>
-
-
-</body></html>
+</body>
+</html>
