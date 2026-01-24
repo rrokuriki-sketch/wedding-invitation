@@ -74,13 +74,14 @@ function initParticles() {
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.style.position = 'absolute';
+
         const size = Math.random() * 8 + 4 + 'px';
         particle.style.width = size;
         particle.style.height = size;
 
         if (Math.random() > 0.4) {
             particle.style.borderRadius = '50% 0 50% 0';
-            particle.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+            particle.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
         } else {
             particle.style.borderRadius = '50%';
         }
@@ -95,7 +96,8 @@ function initParticles() {
 
         const duration = Math.random() * 10 + 10 + 's';
         const delay = Math.random() * 15 + 's';
-        particle.style.animation = "sakuraFall " + duration + " linear " + delay + " infinite";
+        particle.style.animation = 'sakuraFall ' + duration + ' linear ' + delay + ' infinite';
+
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = Math.random() * -20 + '%';
 
@@ -108,6 +110,7 @@ function initSlideshow() {
     if (slides.length === 0) return;
 
     let currentSlide = 0;
+
     slides.forEach((slide, index) => {
         if (index === 0) slide.classList.add('active');
         else slide.classList.remove('active');
@@ -128,7 +131,10 @@ function initScrollFeatures() {
             const targetId = link.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
     });
@@ -158,7 +164,10 @@ function initScrollReveal() {
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    });
 
     document.querySelectorAll('.section-title, .section-subtitle, .message-text, .couple-card, .info-card, .rsvp-intro, .form-group').forEach((el) => {
         el.classList.add('reveal-text');
@@ -175,32 +184,38 @@ function initForm() {
             e.preventDefault();
             const formData = new FormData(rsvpForm);
 
-            // Validation: Changed for Family - only name and reception
-            if (!formData.get('name') || !formData.get('reception')) {
-                alert('お名前と出欠のご回答は必須項目です。');
+            // Validation: Changed for Family - name, reception, and address required
+            if (!formData.get('name') || !formData.get('reception') || !formData.get('address')) {
+                alert('お名前、出欠、ご住所は必須項目です。');
                 return;
             }
 
             const googleFormData = new FormData();
             const entries = GOOGLE_FORM_CONFIG.entryIds;
+
             googleFormData.append(entries.name, formData.get('name'));
             googleFormData.append(entries.reception, formData.get('reception'));
-
+            
             // Family Version Specific: Automatically set Party to '欠席' (Absent)
             googleFormData.append(entries.party, '欠席');
-
+            
             googleFormData.append(entries.allergy, formData.get('allergy') || '');
             googleFormData.append(entries.address, formData.get('address') || '');
 
             try {
                 await fetch(GOOGLE_FORM_CONFIG.formActionUrl, {
-                    method: 'POST', body: googleFormData, mode: 'no-cors'
+                    method: 'POST',
+                    body: googleFormData,
+                    mode: 'no-cors'
                 });
 
                 rsvpForm.style.display = 'none';
                 if (thankYouMessage) {
                     thankYouMessage.style.display = 'block';
-                    thankYouMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    thankYouMessage.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
                 }
             } catch (error) {
                 console.error('Form Submit Error:', error);
@@ -213,8 +228,10 @@ function initForm() {
 // ===========================
 // Triggers
 // ===========================
+
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
     initializeApp();
 }
+
 document.addEventListener('DOMContentLoaded', initializeApp);
 window.addEventListener('load', initializeApp);
