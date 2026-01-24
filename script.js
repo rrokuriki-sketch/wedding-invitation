@@ -86,7 +86,7 @@ function initParticles() {
         // Shape & Color
         if (Math.random() > 0.4) {
             particle.style.borderRadius = '50% 0 50% 0'; // Petal
-            particle.style.transform = `rotate(${Math.random() * 360}deg)`;
+            particle.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
         } else {
             particle.style.borderRadius = '50%'; // Dot
         }
@@ -102,7 +102,7 @@ function initParticles() {
         // Animation
         const duration = Math.random() * 10 + 10 + 's';
         const delay = Math.random() * 15 + 's';
-        particle.style.animation = `sakuraFall ${duration} linear ${delay} infinite`;
+        particle.style.animation = 'sakuraFall ' + duration + ' linear ' + delay + ' infinite';
 
         // Positioning
         particle.style.left = Math.random() * 100 + '%';
@@ -142,7 +142,10 @@ function initScrollFeatures() {
             const targetId = link.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
         });
     });
@@ -161,7 +164,10 @@ function initScrollFeatures() {
 }
 
 function initScrollReveal() {
-    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
     if (!('IntersectionObserver' in window)) {
         // Fallback for primitive browsers
@@ -195,13 +201,14 @@ function initForm() {
             const formData = new FormData(rsvpForm);
 
             // Validation
-            if (!formData.get('name') || !formData.get('reception') || !formData.get('party')) {
-                alert('お名前と出欠のご回答は必須項目です。');
+            if (!formData.get('name') || !formData.get('reception') || !formData.get('party') || !formData.get('address')) {
+                alert('お名前、出欠、ご住所は必須項目です。');
                 return;
             }
 
             const googleFormData = new FormData();
             const entries = GOOGLE_FORM_CONFIG.entryIds;
+
             googleFormData.append(entries.name, formData.get('name'));
             googleFormData.append(entries.reception, formData.get('reception'));
             googleFormData.append(entries.party, formData.get('party'));
@@ -218,7 +225,10 @@ function initForm() {
                 rsvpForm.style.display = 'none';
                 if (thankYouMessage) {
                     thankYouMessage.style.display = 'block';
-                    thankYouMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    thankYouMessage.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
                 }
             } catch (error) {
                 console.error('Form Submit Error:', error);
