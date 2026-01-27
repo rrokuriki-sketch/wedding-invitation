@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,10 @@
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&family=Cormorant+Garamond:wght@300;400;500&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="../style.css">
 </head>
@@ -63,10 +66,10 @@
     <section class="message" id="message">
         <div class="container">
             <div class="section-header">
-                <p class="section-subtitle reveal-text">Message</p>
+                <p class="section-subtitle">Message</p>
             </div>
             <div class="message-content">
-                <p class="message-text reveal-text">
+                <p class="message-text">
                     皆様にはご健勝のこととお慶び申し上げます<br>
                     このたび　私たちは結婚式を挙げることになりました<br>
                     つきましては　親しい皆様の末永いお力添えをいただきたく<br>
@@ -77,7 +80,7 @@
             </div>
 
             <div class="couple-section">
-                <div class="couple-card reveal-text">
+                <div class="couple-card">
                     <div class="couple-photo">
                         <img src="../images/profile-ryo.jpg" alt="涼プロフィール写真">
                     </div>
@@ -91,7 +94,7 @@
                     </div>
                 </div>
 
-                <div class="couple-card reveal-text">
+                <div class="couple-card">
                     <div class="couple-photo">
                         <img src="../images/profile-mihiro.jpg" alt="美洋プロフィール写真">
                     </div>
@@ -113,11 +116,11 @@
     <section class="info" id="info">
         <div class="container">
             <div class="section-header">
-                <p class="section-subtitle reveal-text">Information</p>
+                <p class="section-subtitle">Information</p>
             </div>
 
             <!-- Wedding Reception -->
-            <div class="info-card reveal-text">
+            <div class="info-card">
                 <h2 class="info-title">披露宴のご案内</h2>
                 <div class="info-details">
                     <div class="info-photo">
@@ -134,9 +137,12 @@
                             <dt>挙式開始</dt>
                             <dd>15:15</dd>
 
+                            <dt>披露宴開宴</dt>
+                            <dd>15:45</dd>
+
                             <dt>会場</dt>
                             <dd>
-                                東京會舘 本舘（丸の内）<br>
+                                東京會舘 本舘（丸の内） Rose West<br>
                                 <span class="venue-address">〒100-0005 東京都千代田区丸の内3-2-1</span><br>
                                 <span class="venue-tel">TEL: 03-3215-2111</span><br>
                                 <span class="venue-address">（更衣室は地下１階にございます）</span>
@@ -145,14 +151,13 @@
                             <dt>アクセス</dt>
                             <dd>
                                 JR「東京駅」丸の内南口より徒歩5分<br>
-                                東京メトロ千代田線「二重橋前駅」3番出口直結
+                                東京メトロ千代田線「二重橋前駅」B5出口直結
                             </dd>
-
-                            <dt>ドレスコード</dt>
-                            <dd>平服でお越しください</dd>
                         </dl>
                         <p class="info-note">
-                            ※当日は7階クロークをご利用ください
+                            ※当日は7階クロークをご利用ください<br>
+                            <a href="https://www.kaikan.co.jp/marunouchi/wedding/forguest.html" target="_blank"
+                                class="guest-info-link">ご列席の皆様へ（館内案内）</a>
                         </p>
                     </div>
                 </div>
@@ -164,22 +169,22 @@
     <section class="rsvp" id="rsvp">
         <div class="container">
             <div class="section-header">
-                <p class="section-subtitle reveal-text">RSVP</p>
-                <h2 class="section-title reveal-text">ご出欠のお返事</h2>
+                <p class="section-subtitle">RSVP</p>
+                <h2 class="section-title">ご出欠のお返事</h2>
             </div>
 
-            <div class="rsvp-intro reveal-text">
+            <div class="rsvp-intro">
                 <p>お手数ではございますがご出欠情報のご登録をお願い申し上げます</p>
                 <p class="rsvp-deadline">2026年3月5日までにご一報をお願いいたします</p>
             </div>
 
             <form class="rsvp-form" id="rsvpForm">
-                <div class="form-group reveal-text">
+                <div class="form-group">
                     <label for="name" class="form-label">お名前 <span class="required">*</span></label>
                     <input type="text" id="name" name="name" class="form-input" required>
                 </div>
 
-                <div class="form-group reveal-text">
+                <div class="form-group">
                     <label class="form-label">披露宴 <span class="required">*</span></label>
                     <div class="radio-group">
                         <label class="radio-label">
@@ -193,9 +198,10 @@
                     </div>
                 </div>
 
-                <div class="form-group reveal-text">
+                <div class="form-group">
                     <label for="allergy" class="form-label">アレルギー</label>
-                    <textarea id="allergy" name="allergy" class="form-textarea" rows="2" placeholder="アレルギーがある場合はご記入ください"></textarea>
+                    <textarea id="allergy" name="allergy" class="form-textarea" rows="2"
+                        placeholder="アレルギーがある場合はご記入ください"></textarea>
                 </div>
 
                 <div class="form-group reveal-text">
@@ -229,4 +235,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
