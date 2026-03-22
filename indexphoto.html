@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEMORIES - Photo Library</title>
+    <meta name="description" content="Wedding Photo Library - Ryō & Mihiro">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&family=Cormorant+Garamond:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="photo-style.css">
+</head>
+
+<body>
+    <!-- Visual Effects -->
+    <div class="grain-overlay"></div>
+    <div class="light-overlay"></div>
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Page Wrapper for fade-in -->
+    <div class="page-wrapper">
+        <div class="password-page">
+            <div class="password-container">
+                <h1 class="password-title text-shimmer">Memories</h1>
+                <p class="password-subtitle">Enter Password</p>
+
+                <form class="password-form" id="passwordForm">
+                    <div class="password-input-wrapper">
+                        <input 
+                            type="text" 
+                            id="passwordInput" 
+                            class="password-input" 
+                            placeholder="password"
+                            autocomplete="off"
+                            autocapitalize="none"
+                            spellcheck="false"
+                        >
+                    </div>
+                    <button type="submit" class="password-submit">Enter</button>
+                    <p class="password-error" id="passwordError">Invalid Password</p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="photo-footer">
+            <p>© 2026 Ryō & Mihiro</p>
+        </div>
+    </div>
+
+    <script src="photo-script.js"></script>
+</body>
+
+</html>

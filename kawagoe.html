@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kawagoe - MEMORIES</title>
+    <meta name="description" content="Kawagoe Photo Gallery">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="photo-style.css">
+</head>
+
+<body>
+    <!-- Visual Effects -->
+    <div class="grain-overlay"></div>
+    <div class="light-overlay"></div>
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Back Button -->
+    <a href="indexphoto.html" class="back-button">Back</a>
+
+    <!-- Page Wrapper -->
+    <div class="page-wrapper">
+        <div class="gallery-page">
+            <!-- Header -->
+            <div class="gallery-header">
+                <h1 class="gallery-title">Kawagoe</h1>
+                <p class="gallery-subtitle">Photo Gallery</p>
+                <p class="gallery-count"></p>
+            </div>
+
+            <!-- Photo Grid -->
+            <div class="gallery-container">
+                <div class="gallery-grid">
+                    <!-- ── カスタマイズ箇所: 写真を追加/削除する場合はここを編集 ── -->
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/CIMG0013.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/CIMG0014.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/CIMG0015.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/CIMG0016.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/DSCF0033.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/DSCF0034.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/IMG_0091.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/IMG_0092.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/IMG_0093.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/IMG_0524.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/IMG_1739.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/IMG_1986.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/IMG_3441.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/IMG_6566.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/IMG_6567.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/IMG_6570.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/IMG_7752 (1).jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/LINE_ALBUM_ゆうた結婚式_1.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/LINE_ALBUM_ラウンドワン_1.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/SCAN3.jpeg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/SCAN4.jpeg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/SCAN5.jpeg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/thumb_IMG_5215_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/01 川越/スキャン済みドキュメント5.jpg" alt="Photo"></div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="photo-footer">
+                <p>© 2026 Ryō & Mihiro</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" aria-label="Close"></button>
+        <button class="lightbox-nav lightbox-prev" aria-label="Previous"></button>
+        <div class="lightbox-content"></div>
+        <button class="lightbox-nav lightbox-next" aria-label="Next"></button>
+        <div class="lightbox-counter"></div>
+    </div>
+
+    <script src="photo-script.js"></script>
+</body>
+
+</html>

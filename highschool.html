@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High School - MEMORIES</title>
+    <meta name="description" content="High School Photo Gallery">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="photo-style.css">
+</head>
+
+<body>
+    <div class="grain-overlay"></div>
+    <div class="light-overlay"></div>
+    <div class="particles-container" id="particles"></div>
+
+    <a href="indexphoto.html" class="back-button">Back</a>
+
+    <div class="page-wrapper">
+        <div class="gallery-page">
+            <div class="gallery-header">
+                <h1 class="gallery-title">High School</h1>
+                <p class="gallery-subtitle">Photo Gallery</p>
+                <p class="gallery-count"></p>
+            </div>
+
+            <div class="gallery-container">
+                <div class="gallery-grid">
+                    <!-- ── カスタマイズ箇所: 写真を追加/削除する場合はここを編集 ── -->
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2013_04_08_IMG_1647.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2013_04_08_IMG_1648.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2013_04_08_IMG_1649.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2013_04_08_IMG_1650.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2013_04_08_IMG_1651.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2013_04_08_IMG_1653.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2013_04_08_IMG_1654.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2013_04_08_IMG_1655.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2013_04_08_IMG_1656.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2013_04_08_IMG_1657.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2013_04_08_IMG_1658.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2013_04_08_IMG_1659.JPG" alt="Photo"></div>
+                    <!-- 動画 -->
+                    <div class="gallery-item is-video"><div class="item-overlay"></div><div class="video-indicator"></div><video preload="none"><source src="photo/03 学院/2013_学祭_befoolbecool.mp4" type="video/mp4"></video></div>
+                    <div class="gallery-item is-video"><div class="item-overlay"></div><div class="video-indicator"></div><video preload="none"><source src="photo/03 学院/2013_学祭_カンナムスタイル.mp4" type="video/mp4"></video></div>
+                    <div class="gallery-item is-video"><div class="item-overlay"></div><div class="video-indicator"></div><video preload="none"><source src="photo/03 学院/2014_学祭_アナ雪.mp4" type="video/mp4"></video></div>
+                    <div class="gallery-item is-video"><div class="item-overlay"></div><div class="video-indicator"></div><video preload="none"><source src="photo/03 学院/2016_03_ending_ビデオ2.mp4" type="video/mp4"></video></div>
+                    <div class="gallery-item is-video"><div class="item-overlay"></div><div class="video-indicator"></div><video preload="none"><source src="photo/03 学院/2016_03_ビデオ1.mp4" type="video/mp4"></video></div>
+                    <!-- 卒業写真 -->
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4107.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4108.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4109.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4110.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4111.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4112.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4116.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4117.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4118.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4119.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4120.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4121.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4122.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4123.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4124.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4125.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4126.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4127.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4128.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4129.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4130.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4150.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4151.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4152.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4155.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4156.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4157.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4158.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4161.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4169.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4170.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4171.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4175.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4176.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4177.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4178.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4190.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4191.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4204.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4205.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4206.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4207.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4208.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4209.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4210.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4211.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4212.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4213.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4214.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4215.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4216.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4217.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4221.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4223.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4228.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4229.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4230.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4231.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4235.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高卒_IMG_4236.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/2016_04_01_高校バスケ部一同.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/20220505_1.jpg" alt="Photo"></div>
+                    <div class="gallery-item is-video"><div class="item-overlay"></div><div class="video-indicator"></div><video preload="none"><source src="photo/03 学院/215651.mp4" type="video/mp4"></video></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4107.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4108.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4109.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4110.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4111.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4112.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4116.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4117.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4118.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4119.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4120.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4121.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4122.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4123.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4124.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4125.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4126.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4127.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4128.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4129.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4130.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4150.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4151.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4152.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4155.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4156.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4157.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4158.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4161.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4169.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4170.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4171.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4175.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4176.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4177.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4178.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4190.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4191.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4204.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4205.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4206.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4207.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4208.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4209.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4210.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4211.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4212.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4213.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4214.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4215.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4216.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4217.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4221.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4223.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4228.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4229.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4230.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4231.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4235.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_4287.jpeg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_6432.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_6456.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_6545.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_6681.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_6682.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_6684.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_7006.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/IMG_7007.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_2015校外学習_1.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_2023 5月 大阪旅行_1.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_317サッカー_1.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_しおん結婚式_1.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_しおん結婚式_2.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_しおん結婚式_3.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_としまえん_1.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_としまえん_2.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_ノーフューチャー_2.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_ノーフューチャー_3.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_ハムラ_2.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_九州旅行_1.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_八丈島_1.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_八丈島_2.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_八丈島_3.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_八丈島_4.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_八丈島_5.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_八丈島_6.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_八丈島_7.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_熱海_1.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_青森_1.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/LINE_ALBUM_青森_2.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/S__9764880.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/S__9764883.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4245_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4281_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4369_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4370_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4371_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4372_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4374_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4375_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4376_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4377_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4378_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4379_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4381_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4382_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4383_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4384_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4385_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4386_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4388_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4389_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4390_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4391_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4392_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4393_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4395_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4396_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4398_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4400_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4452_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4776_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4838_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4904_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4939_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4951_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4984_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_4998_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_5186_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_5188_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_5189_1024.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/03 学院/thumb_IMG_5190_1024.jpg" alt="Photo"></div>
+                </div>
+            </div>
+
+            <div class="photo-footer">
+                <p>© 2026 Ryō & Mihiro</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" aria-label="Close"></button>
+        <button class="lightbox-nav lightbox-prev" aria-label="Previous"></button>
+        <div class="lightbox-content"></div>
+        <button class="lightbox-nav lightbox-next" aria-label="Next"></button>
+        <div class="lightbox-counter"></div>
+    </div>
+
+    <script src="photo-script.js"></script>
+</body>
+
+</html>

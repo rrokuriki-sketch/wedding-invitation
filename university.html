@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University - MEMORIES</title>
+    <meta name="description" content="University Photo Gallery">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="photo-style.css">
+</head>
+
+<body>
+    <div class="grain-overlay"></div>
+    <div class="light-overlay"></div>
+    <div class="particles-container" id="particles"></div>
+
+    <a href="indexphoto.html" class="back-button">Back</a>
+
+    <div class="page-wrapper">
+        <div class="gallery-page">
+            <div class="gallery-header">
+                <h1 class="gallery-title">University</h1>
+                <p class="gallery-subtitle">Photo Gallery</p>
+                <p class="gallery-count"></p>
+            </div>
+
+            <div class="gallery-container">
+                <div class="gallery-grid">
+                    <!-- ── カスタマイズ箇所: 写真を追加/削除する場合はここを編集 ── -->
+                    <!-- ※ .heic ファイルはブラウザ非対応のため除外 -->
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/2016_04_01_入学式_IMG_4228.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/2016_04_01_入学式_IMG_4229.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/2016_04_01_入学式_IMG_4230.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/2016_04_01_入学式_IMG_4231.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/2016_04_01_入学式_IMG_4235.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/2026.02.png" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/20260307_064107184_iOS.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/2026_05_10_IMG_0817.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/IMG_1816.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/IMG_8473.JPG" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/LINE_ALBUM_5人で行けた棒ノ折山、グロッキーTAKAHIRO、ジンギスカン_1.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/LINE_ALBUM_5人で行けた棒ノ折山、グロッキーTAKAHIRO、ジンギスカン_2.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/LINE_ALBUM_5人で行けた棒ノ折山、グロッキーTAKAHIRO、ジンギスカン_3.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/LINE_ALBUM_☀️ 2日目 🏖.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/LINE_ALBUM_弾丸江ノ島_1.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/LINE_ALBUM_弾丸江ノ島_2.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/LINE_ALBUM_弾丸江ノ島_3.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/LINE_ALBUM_弾丸江ノ島_4.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/LINE_ALBUM_弾丸江ノ島_5.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/LINE_ALBUM_極寒の榛名山、温泉、うどん_1.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/LINE_ALBUM_極寒の榛名山、温泉、うどん_2.jpg" alt="Photo"></div>
+                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/04 大学(研究室)/LINE_ALBUM_極寒の榛名山、温泉、うどん_3.jpg" alt="Photo"></div>
+                </div>
+            </div>
+
+            <div class="photo-footer">
+                <p>© 2026 Ryō & Mihiro</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" aria-label="Close"></button>
+        <button class="lightbox-nav lightbox-prev" aria-label="Previous"></button>
+        <div class="lightbox-content"></div>
+        <button class="lightbox-nav lightbox-next" aria-label="Next"></button>
+        <div class="lightbox-counter"></div>
+    </div>
+
+    <script src="photo-script.js"></script>
+</body>
+
+</html>
