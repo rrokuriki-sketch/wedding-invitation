@@ -3,6 +3,12 @@
    Password authentication, lightbox, lazy loading, particles
    =========================== */
 
+// ── 【重要】Google Apps ScriptのWebアプリURL ──
+// TODO: 発行したご自身のGAS Web API URLを以下に貼り付けてください
+const GAS_APP_URL = "https://script.google.com/macros/s/AKfycbwWJuImD7iDXG7_ruSZsCnRIb5pSVxYTbU4ix1-iI37jc-JvOFh-rOFomKBDE3mtGoS_A/exec";
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     // Page fade-in
     const pageWrapper = document.querySelector('.page-wrapper');
@@ -16,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     initPasswordForm();
     initGallery();
+    initUpload();
     initLightbox();
 });
 
@@ -34,12 +41,28 @@ function initPasswordForm() {
        ── カスタマイズ箇所 ── 
        新しいページを追加する場合、ここにエントリを追加してください */
     const passwordMap = {
+        // [01 涼]の既存分と追加分
         'hatsukari': 'kawagoe.html',
         'gatecity': 'junior.html',
         'darkness': 'highschool.html',
-        'kondo': 'university.html',    // 大文字小文字を区別しない
+        'kondo': 'university.html',
         'niji': 'niji.html',
-        'taisou daisuki': 'company.html'
+        'taisou daisuki': 'company.html',
+        'ryobirth': 'ryo-birth.html',
+        'ryolast': 'ryo-last.html',
+        
+        // [02 美洋] パスワード変更対応
+        'kawaii': 'mihiro-child.html',
+        'akb48': 'mihiro-junior.html',
+        'hotcake': 'mihiro-highschool.html',
+        'variety': 'mihiro-univ.html',
+        'gorigori': 'mihiro-king.html',
+        'atami': 'mihiro-purin.html',
+        'duck': 'mihiro-aflac.html',
+        'mihiroextra': 'mihiro-extra.html',
+        
+        // 新規作成
+        'ryo&mihiro': 'ryoandmihiro.html'
     };
 
     form.addEventListener('submit', (e) => {
@@ -71,7 +94,79 @@ function initPasswordForm() {
    =========================== */
 
 function initGallery() {
-    const items = document.querySelectorAll('.gallery-item');
+    const grid = document.querySelector('.gallery-grid');
+    if (!grid) return;
+
+    // もしページがGoogle Driveからの動的読み込み用 (data-albumあり) なら
+    const albumName = grid.dataset.album;
+    if (albumName) {
+        fetchDynamicGallery(grid, albumName);
+    } else {
+        // 既存の静的ギャラリー動作（念のため残す）
+        setupStaticGalleryItems(grid);
+    }
+}
+
+function fetchDynamicGallery(grid, albumName) {
+    if (GAS_APP_URL === "YOUR_GAS_WEB_APP_URL") {
+        grid.innerHTML = '<div class="error-message">Error: GAS_APP_URLが設定されていません。<br>photo-script.js を開いて正しいURLを入力してください。</div>';
+        return;
+    }
+
+    const url = `${GAS_APP_URL}?folderName=${encodeURIComponent(albumName)}`;
+    
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            if (data.error) throw new Error(data.error);
+            if (data.length === 0) {
+                grid.innerHTML = '<div class="error-message">写真が見つかりません。</div>';
+                return;
+            }
+
+            // HTML生成
+            let html = '';
+            data.forEach((item, index) => {
+                // サムネイル用は短辺クロップなど最適化された thumbnail API を使用 (安定して高速)
+                const thumbnailUrl = `https://drive.google.com/thumbnail?id=${item.id}&sz=w800`;
+                // Lightbox拡大用は lh3 形式か元画像を指定
+                const fullUrl = `https://lh3.googleusercontent.com/d/${item.id}`;
+                
+                // 動的ロード時はLazy Loadingを使わず直接 src を指定し、visible クラスとディレイ付与
+                const delay = index * 30; // 順番にフェードイン
+
+                if (item.type === 'video') {
+                    html += `
+                    <div class="gallery-item is-video visible" style="transition-delay: ${delay}ms" data-id="${item.id}" data-type="video" data-mime="${item.mimeType}" data-src="${item.src}">
+                        <div class="item-overlay"></div>
+                        <div class="video-indicator"></div>
+                        <img src="${thumbnailUrl}" alt="${item.name}">
+                    </div>`;
+                } else {
+                    html += `
+                    <div class="gallery-item visible" style="transition-delay: ${delay}ms" data-id="${item.id}" data-type="image" data-src="${fullUrl}">
+                        <div class="item-overlay"></div>
+                        <img src="${thumbnailUrl}" alt="${item.name}">
+                    </div>`;
+                }
+            });
+
+            grid.innerHTML = html;
+            
+            // Generate count
+            const countEl = document.querySelector('.gallery-count');
+            if (countEl) countEl.textContent = `${data.length} photos`;
+
+            setupStaticGalleryItems(grid);
+        })
+        .catch(err => {
+            console.error(err);
+            grid.innerHTML = `<div class="error-message">Failed to load gallery: ${err.message}</div>`;
+        });
+}
+
+function setupStaticGalleryItems(grid) {
+    const items = grid.querySelectorAll('.gallery-item');
     if (items.length === 0) return;
 
     // Intersection Observer for lazy loading and animation
@@ -108,12 +203,9 @@ function initGallery() {
     });
 
     items.forEach(item => observer.observe(item));
-
-    // Update gallery count
-    const countEl = document.querySelector('.gallery-count');
-    if (countEl) {
-        countEl.textContent = `${items.length} photos`;
-    }
+    
+    // Lightboxの再初期化
+    initLightbox();
 }
 
 /* ===========================
@@ -133,29 +225,49 @@ function initLightbox() {
     const items = document.querySelectorAll('.gallery-item');
     let currentIndex = 0;
 
-    // Collect all media sources
+    // Collect all media sources dynamically
     const mediaSources = [];
     items.forEach((item, idx) => {
-        const img = item.querySelector('img');
-        const video = item.querySelector('video');
-        if (video) {
-            const source = video.querySelector('source');
+        // The item could be static (has img/video) or dynamic (has data-type/data-src)
+        if (item.dataset.type) {
             mediaSources.push({
-                type: 'video',
-                src: source ? source.src : video.src,
+                type: item.dataset.type,
+                src: item.dataset.src,
+                id: item.dataset.id,
+                mime: item.dataset.mime,
                 index: idx
             });
-        } else if (img) {
-            mediaSources.push({
-                type: 'image',
-                src: img.dataset.src || img.src,
-                index: idx
-            });
+        } else {
+            // Fallback for purely static HTML elements
+            const img = item.querySelector('img');
+            const video = item.querySelector('video');
+            if (video) {
+                const source = video.querySelector('source');
+                mediaSources.push({
+                    type: 'video',
+                    src: source ? source.src : video.src,
+                    index: idx
+                });
+            } else if (img) {
+                mediaSources.push({
+                    type: 'image',
+                    src: img.dataset.src || img.src,
+                    index: idx
+                });
+            }
         }
     });
 
+    // Remove existing listeners to avoid duplicates if re-initialized
+    const newItems = [];
+    items.forEach(item => {
+        const clone = item.cloneNode(true);
+        item.parentNode.replaceChild(clone, item);
+        newItems.push(clone);
+    });
+
     // Open lightbox
-    items.forEach((item, idx) => {
+    newItems.forEach((item, idx) => {
         item.addEventListener('click', () => {
             currentIndex = idx;
             showMedia(currentIndex);
@@ -164,73 +276,75 @@ function initLightbox() {
         });
     });
 
-    // Close lightbox
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
-    });
-
-    // Navigation
-    lightboxPrev.addEventListener('click', (e) => {
-        e.stopPropagation();
-        currentIndex = (currentIndex - 1 + mediaSources.length) % mediaSources.length;
-        showMedia(currentIndex);
-    });
-
-    lightboxNext.addEventListener('click', (e) => {
+    // Reset lightbox event listeners cleanly
+    const safeNext = (e) => {
         e.stopPropagation();
         currentIndex = (currentIndex + 1) % mediaSources.length;
         showMedia(currentIndex);
-    });
+    };
+    const safePrev = (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + mediaSources.length) % mediaSources.length;
+        showMedia(currentIndex);
+    };
+
+    lightboxNext.onclick = safeNext;
+    lightboxPrev.onclick = safePrev;
+    lightboxClose.onclick = closeLightbox;
+    lightbox.onclick = (e) => {
+        if (e.target === lightbox) closeLightbox();
+    };
 
     // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
+    document.onkeydown = (e) => {
         if (!lightbox.classList.contains('active')) return;
         if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') {
-            currentIndex = (currentIndex - 1 + mediaSources.length) % mediaSources.length;
-            showMedia(currentIndex);
-        }
-        if (e.key === 'ArrowRight') {
-            currentIndex = (currentIndex + 1) % mediaSources.length;
-            showMedia(currentIndex);
-        }
-    });
+        if (e.key === 'ArrowLeft') safePrev(e);
+        if (e.key === 'ArrowRight') safeNext(e);
+    };
 
-    // Touch swipe support
+    // Touch swipe support (simplified for rebinds)
     let touchStartX = 0;
-    lightbox.addEventListener('touchstart', (e) => {
+    lightbox.ontouchstart = (e) => {
         touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
+    };
 
-    lightbox.addEventListener('touchend', (e) => {
+    lightbox.ontouchend = (e) => {
         const touchEndX = e.changedTouches[0].screenX;
         const diff = touchStartX - touchEndX;
         if (Math.abs(diff) > 50) {
-            if (diff > 0) {
-                currentIndex = (currentIndex + 1) % mediaSources.length;
-            } else {
-                currentIndex = (currentIndex - 1 + mediaSources.length) % mediaSources.length;
-            }
-            showMedia(currentIndex);
+            if (diff > 0) safeNext(e);
+            else safePrev(e);
         }
-    }, { passive: true });
+    };
 
     function showMedia(idx) {
+        if (mediaSources.length === 0) return;
         const media = mediaSources[idx];
         lightboxContent.innerHTML = '';
 
         if (media.type === 'video') {
-            const video = document.createElement('video');
-            video.controls = true;
-            video.autoplay = true;
-            video.style.maxWidth = '90vw';
-            video.style.maxHeight = '85vh';
-            const source = document.createElement('source');
-            source.src = media.src;
-            source.type = getVideoMimeType(media.src);
-            video.appendChild(source);
-            lightboxContent.appendChild(video);
+            // For Google Drive videos
+            if (media.id && media.src.includes('drive.google.com')) {
+                // To play Google Drive videos, embedding the preview iframe is most reliable
+                const iframe = document.createElement('iframe');
+                iframe.src = `https://drive.google.com/file/d/${media.id}/preview`;
+                iframe.style.width = '80vw';
+                iframe.style.height = '80vh';
+                iframe.style.border = 'none';
+                lightboxContent.appendChild(iframe);
+            } else {
+                const video = document.createElement('video');
+                video.controls = true;
+                video.autoplay = true;
+                video.style.maxWidth = '90vw';
+                video.style.maxHeight = '85vh';
+                const source = document.createElement('source');
+                source.src = media.src;
+                source.type = media.mime || getVideoMimeType(media.src);
+                video.appendChild(source);
+                lightboxContent.appendChild(video);
+            }
         } else {
             const img = document.createElement('img');
             img.src = media.src;
@@ -317,3 +431,77 @@ function initParticles() {
     `;
     document.head.appendChild(style);
 }
+
+/* ===========================
+   Upload Feature
+   =========================== */
+
+function initUpload() {
+    const uploadInput = document.getElementById('photoUpload');
+    const uploadStatus = document.getElementById('uploadStatus');
+    const grid = document.querySelector('.gallery-grid');
+    if (!uploadInput || !grid || !uploadStatus) return;
+
+    const albumName = grid.dataset.album;
+
+    uploadInput.addEventListener('change', async (e) => {
+        const files = e.target.files;
+        if (!files.length) return;
+
+        uploadStatus.textContent = `アップロード中... (0/${files.length})`;
+        uploadStatus.className = 'upload-status uploading visible';
+
+        let successCount = 0;
+        let errorCount = 0;
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            uploadStatus.textContent = `アップロード中... (${i + 1}/${files.length})`;
+            
+            try {
+                const base64Data = await new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result.split(',')[1]);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+
+                const payload = {
+                    folderName: albumName,
+                    filename: file.name,
+                    mimeType: file.type,
+                    fileData: base64Data
+                };
+
+                const res = await fetch(GAS_APP_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await res.json();
+                if (result.success) {
+                    successCount++;
+                } else {
+                    throw new Error(result.error);
+                }
+            } catch (err) {
+                console.error('Upload Error for ' + file.name + ':', err);
+                errorCount++;
+            }
+        }
+
+        if (errorCount === 0) {
+            uploadStatus.textContent = 'アップロード完了！ページを更新します...';
+            uploadStatus.className = 'upload-status success visible';
+            setTimeout(() => location.reload(), 2000);
+        } else {
+            uploadStatus.textContent = `${successCount}件成功、${errorCount}件失敗しました。`;
+            uploadStatus.className = 'upload-status error visible';
+            setTimeout(() => { uploadStatus.classList.remove('visible'); }, 5000);
+        }
+        
+        // Reset input
+        uploadInput.value = '';
+    });
+}
+

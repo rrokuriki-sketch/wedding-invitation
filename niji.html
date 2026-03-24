@@ -4,9 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Driveの画像を確実に表示させるためのリファラー制御 -->
+    <meta name="referrer" content="no-referrer">
+    
     <title>Niji no Kai - MEMORIES</title>
     <meta name="description" content="Niji no Kai Photo Gallery">
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
@@ -15,74 +19,39 @@
 </head>
 
 <body>
+    <!-- Visual Effects -->
     <div class="grain-overlay"></div>
     <div class="light-overlay"></div>
     <div class="particles-container" id="particles"></div>
 
+    <!-- Back Button -->
     <a href="indexphoto.html" class="back-button">Back</a>
 
+    <!-- Page Wrapper -->
     <div class="page-wrapper">
         <div class="gallery-page">
+            <!-- Header -->
             <div class="gallery-header">
                 <h1 class="gallery-title">Niji no Kai</h1>
                 <p class="gallery-subtitle">Photo Gallery</p>
                 <p class="gallery-count"></p>
             </div>
 
+            <!-- Photo Grid -->
             <div class="gallery-container">
-                <div class="gallery-grid">
-                    <!-- ── カスタマイズ箇所: 写真を追加/削除する場合はここを編集 ── -->
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/1096ED5F-C647-4772-839C-516BDACA11E6-579-0000003390D5A5D5 (1).jpeg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/20181228_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/2018_01_01.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/20200112_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/20210412_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/20220217_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/20220217_2.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/20230903_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/22448613_1248424181969493_8747826080239241554_n.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/22449603_10207759930515424_8510944861535906336_n.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/22449838_10207759936835582_4503303214842525486_n.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/22450054_1248424041969507_8531173302814376032_n.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/22549868_1248488805296364_2149140653898803529_n.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_0501.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_0512.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_0538.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_1615.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_1616.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_1877.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_1881.jpg" alt="Photo"></div>
-                    <!-- 動画 -->
-                    <div class="gallery-item is-video"><div class="item-overlay"></div><div class="video-indicator"></div><video preload="none"><source src="photo/05 大学(虹の会)/IMG_7198.m4v" type="video/mp4"></video></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_7204.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_7253.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_7791.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_7924.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_7971.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_7973.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_7977.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_7978.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_7979.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/IMG_7980.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_20161226 _1_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_20161226 _1_2.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_20181228_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_20220219-20_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_20230114-15_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_NY_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_✨✨✨_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_ありがとう_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_いいしゃ_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_いいしゃ_2.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_いいしゃ_3.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_みたくないであろう写真たち_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_みたくないであろう写真たち_2.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_みたくないであろう写真たち_3.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_ロートリ🚗_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/05 大学(虹の会)/LINE_ALBUM_ロートリ🚗_3.jpg" alt="Photo"></div>
+                <div class="gallery-grid" data-album="05 大学(虹の会)">
+                    <div class="loading-spinner"></div>
                 </div>
             </div>
+            
+            <!-- Upload UI (Moved to Bottom) -->
+            <div class="upload-container" style="padding-bottom: 40px;">
+                <label for="photoUpload" class="upload-btn">写真を共有する</label>
+                <input type="file" id="photoUpload" multiple accept="image/*,video/*" style="display:none;">
+                <div id="uploadStatus" class="upload-status"></div>
+            </div>
 
+            <!-- Footer -->
             <div class="photo-footer">
                 <p>© 2026 Ryō & Mihiro</p>
             </div>

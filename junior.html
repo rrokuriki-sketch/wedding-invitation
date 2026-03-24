@@ -4,9 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hino Gakuen - MEMORIES</title>
-    <meta name="description" content="Hino Gakuen Photo Gallery">
+    <!-- Google Driveの画像を確実に表示させるためのリファラー制御 -->
+    <meta name="referrer" content="no-referrer">
+    
+    <title>Junior High - MEMORIES</title>
+    <meta name="description" content="Junior High Photo Gallery">
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
@@ -15,181 +19,39 @@
 </head>
 
 <body>
+    <!-- Visual Effects -->
     <div class="grain-overlay"></div>
     <div class="light-overlay"></div>
     <div class="particles-container" id="particles"></div>
 
+    <!-- Back Button -->
     <a href="indexphoto.html" class="back-button">Back</a>
 
+    <!-- Page Wrapper -->
     <div class="page-wrapper">
         <div class="gallery-page">
+            <!-- Header -->
             <div class="gallery-header">
-                <h1 class="gallery-title">Hino Gakuen</h1>
+                <h1 class="gallery-title">Junior High</h1>
                 <p class="gallery-subtitle">Photo Gallery</p>
                 <p class="gallery-count"></p>
             </div>
 
+            <!-- Photo Grid -->
             <div class="gallery-container">
-                <div class="gallery-grid">
-                    <!-- ── カスタマイズ箇所: 写真を追加/削除する場合はここを編集 ── -->
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2010_03_IMG_0407.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2010_04_01_入学式_IMG_0517.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2010_04_01_入学式_IMG_0519.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2010_04_01_入学式_IMG_0520.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2010_04_01_入学式_l086.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2010_08_05_IMG_0615.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2010_12_27_IMG_0661.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2010_12_27_IMG_0662.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2010_日野学園IMG_1558.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2010_日野学園IMG_2347.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2010_７学年運動会_7.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2010_７学年運動会_l021.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2010_７学年運動会_l022.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2011_02_26_IMG_0839.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2011_８学年運動会_l023.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2011_８学年運動会_l024.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1177.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1178.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1179.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1180.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1181.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1183.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1184.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1185.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1186.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1187.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1188.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1189.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1190.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1191.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1192.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1194.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1195.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1196.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1197.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1198.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1199.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1200.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1201.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1202.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1203.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_16_IMG_1204.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1205.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1206.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1208.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1209.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1210.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1211.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1212.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1213.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1215.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1216.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1217.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1218.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1219.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1220.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1221.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1222.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1223.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1224.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1225.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1226.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1227.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1228.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1229.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1230.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1231.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1232.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1233.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1234.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1235.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1236.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1238.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1240.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1244.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1245.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1246.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_05_17_IMG_1247.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_修学旅行_l022.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_修学旅行_l104.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_修学旅行_l108.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_９学年運動会_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_９学年運動会_l036.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_９学年運動会_l044.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2012_９学年運動会_l068.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_19_IMG_1437.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_19_IMG_1438.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_19_IMG_1439.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_19_IMG_1440.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_19_IMG_1441.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_19_IMG_1442.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_19_IMG_1443.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_19_IMG_1444.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_19_IMG_1445.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_19_IMG_1446.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_19_IMG_1447.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_28_IMG_1448.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_28_IMG_1476.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_28_IMG_1482.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_28_IMG_1516.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_28_IMG_1555.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_28_IMG_1557.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/2013_03_28_IMG_1566.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/20141029_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/20141029_2.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/20141029_3.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/B6N2Xv8CcAEKvpl.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/B6N2XvbCAAAjXvd.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/B6N2XvfCQAIbwf5.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/B6N2XwGCUAAzRPs.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/IMG_5773.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/IMG_7140.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/IMG_7141.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/IMG_7144.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/IMG_7145.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/IMG_7146.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/IMG_7147.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/IMG_7152.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/IMG_7744.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/IMG_7864.JPG" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/l003.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/l036.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/l044.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/l045.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/l075.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/l077.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/l086.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/l088.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/l096.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/l097.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/LINE_ALBUM_まだまだ！_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/LINE_ALBUM_虹_1.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/thumb_IMG_4849_1024.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/thumb_IMG_4850_1024.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/thumb_IMG_4851_1024.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/thumb_IMG_4933_1024.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/thumb_IMG_5041_1024.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/thumb_IMG_5042_1024.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/thumb_IMG_5043_1024.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/thumb_IMG_5044_1024.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/thumb_IMG_5059_1024.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/thumb_IMG_5060_1024.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/thumb_IMG_5199_1024.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/thumb_IMG_5200_1024.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/thumb_IMG_5201_1024.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/thumb_IMG_5380_1024.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/スクールライフ_l003.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/スクールライフ_l045.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/スクールライフ_l075.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/スクールライフ_l077.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/スクールライフ_l088.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/スクールライフ_l096.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/スクールライフ_l097.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/スクールライフ_集合.jpg" alt="Photo"></div>
-                    <div class="gallery-item"><div class="item-overlay"></div><img data-src="photo/02 日野/集合.jpg" alt="Photo"></div>
+                <div class="gallery-grid" data-album="02 日野">
+                    <div class="loading-spinner"></div>
                 </div>
             </div>
+            
+            <!-- Upload UI (Moved to Bottom) -->
+            <div class="upload-container" style="padding-bottom: 40px;">
+                <label for="photoUpload" class="upload-btn">写真を共有する</label>
+                <input type="file" id="photoUpload" multiple accept="image/*,video/*" style="display:none;">
+                <div id="uploadStatus" class="upload-status"></div>
+            </div>
 
+            <!-- Footer -->
             <div class="photo-footer">
                 <p>© 2026 Ryō & Mihiro</p>
             </div>
