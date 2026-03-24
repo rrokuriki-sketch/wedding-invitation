@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     initPasswordForm();
     initGallery();
-    initUpload();
     initLightbox();
 });
 
@@ -430,78 +429,5 @@ function initParticles() {
         }
     `;
     document.head.appendChild(style);
-}
-
-/* ===========================
-   Upload Feature
-   =========================== */
-
-function initUpload() {
-    const uploadInput = document.getElementById('photoUpload');
-    const uploadStatus = document.getElementById('uploadStatus');
-    const grid = document.querySelector('.gallery-grid');
-    if (!uploadInput || !grid || !uploadStatus) return;
-
-    const albumName = grid.dataset.album;
-
-    uploadInput.addEventListener('change', async (e) => {
-        const files = e.target.files;
-        if (!files.length) return;
-
-        uploadStatus.textContent = `アップロード中... (0/${files.length})`;
-        uploadStatus.className = 'upload-status uploading visible';
-
-        let successCount = 0;
-        let errorCount = 0;
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            uploadStatus.textContent = `アップロード中... (${i + 1}/${files.length})`;
-            
-            try {
-                const base64Data = await new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onload = () => resolve(reader.result.split(',')[1]);
-                    reader.onerror = reject;
-                    reader.readAsDataURL(file);
-                });
-
-                const payload = {
-                    folderName: albumName,
-                    filename: file.name,
-                    mimeType: file.type,
-                    fileData: base64Data
-                };
-
-                const res = await fetch(GAS_APP_URL, {
-                    method: 'POST',
-                    body: JSON.stringify(payload)
-                });
-                
-                const result = await res.json();
-                if (result.success) {
-                    successCount++;
-                } else {
-                    throw new Error(result.error);
-                }
-            } catch (err) {
-                console.error('Upload Error for ' + file.name + ':', err);
-                errorCount++;
-            }
-        }
-
-        if (errorCount === 0) {
-            uploadStatus.textContent = 'アップロード完了！ページを更新します...';
-            uploadStatus.className = 'upload-status success visible';
-            setTimeout(() => location.reload(), 2000);
-        } else {
-            uploadStatus.textContent = `${successCount}件成功、${errorCount}件失敗しました。`;
-            uploadStatus.className = 'upload-status error visible';
-            setTimeout(() => { uploadStatus.classList.remove('visible'); }, 5000);
-        }
-        
-        // Reset input
-        uploadInput.value = '';
-    });
 }
 
