@@ -40,7 +40,7 @@ function initPasswordForm() {
        ── カスタマイズ箇所 ── 
        新しいページを追加する場合、ここにエントリを追加してください */
     const passwordMap = {
-        // [01 涼]の既存分と追加分
+                // [01 涼]の既存分と追加分
         'hatsukari': 'kawagoe.html',
         'gatecity': 'junior.html',
         'darkness': 'highschool.html',
@@ -64,17 +64,19 @@ function initPasswordForm() {
         
         // 新規作成
         'R&M': 'ryoandmihiro.html'
+        
     };
 
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const password = input.value.trim().toLowerCase();
+        const password = input.value.trim();
+        const matchedKey = Object.keys(passwordMap).find(key => key.toLowerCase() === password.toLowerCase());
 
-        if (passwordMap[password]) {
+        if (matchedKey) {
             // Fade out then navigate
             document.querySelector('.page-wrapper').style.opacity = '0';
             setTimeout(() => {
-                window.location.href = passwordMap[password];
+                window.location.href = passwordMap[matchedKey];
             }, 600);
         } else {
             // Error shake animation
