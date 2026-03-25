@@ -51,7 +51,8 @@ function initPasswordForm() {
         'ryolast': 'ryo-last.html',
         
         // [02 美洋] パスワード変更対応
-        'kawaii': 'mihiro-child.html',
+        //'kawaii': 'mihiro-child.html',
+        'mihirobirth': 'mihiro-child.html',
         'akb48': 'mihiro-junior.html',
         'hotcake': 'mihiro-highschool.html',
         'variety': 'mihiro-univ.html',
