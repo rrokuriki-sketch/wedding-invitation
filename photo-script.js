@@ -47,12 +47,13 @@ function initPasswordForm() {
         'kondo': 'university.html',
         'niji': 'niji.html',
         'taisou daisuki': 'company.html',
-        'ryobirth': 'ryo-birth.html',
+       // 'ryobirth': 'ryo-birth.html',
+        'R_CHILDHOOD': 'ryo-birth.html',
         'ryolast': 'ryo-last.html',
         
         // [02 美洋] パスワード変更対応
         //'kawaii': 'mihiro-child.html',
-        'mihirobirth': 'mihiro-child.html',
+        'M_CHILDHOOD': 'mihiro-child.html',
         'akb48': 'mihiro-junior.html',
         'hotcake': 'mihiro-highschool.html',
         'variety': 'mihiro-univ.html',
@@ -62,7 +63,7 @@ function initPasswordForm() {
         'mihiroextra': 'mihiro-extra.html',
         
         // 新規作成
-        'ryo&mihiro': 'ryoandmihiro.html'
+        'R&M': 'ryoandmihiro.html'
     };
 
     form.addEventListener('submit', (e) => {
