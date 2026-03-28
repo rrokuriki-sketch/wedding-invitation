@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wedding Jump - Ryō & Mihiro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&family=Cormorant+Garamond:ital,wght@0,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #e6d370;
+            --gold-dark: #c8b84a;
+            --gold-light: #f5e99a;
+            --ivory: #F9F7F2;
+            --text: #2C2C2C;
+            --sakura: #fddde6;
+            --gray: #b0a898;
+            --pixel: 'Courier New', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Noto Serif JP', serif;
+            background: var(--ivory);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-x: hidden;
+            touch-action: none;
+            padding: 0;
+        }
+
+        /* ── Pixel font helper ── */
+        .px { font-family: var(--pixel); letter-spacing: 0.05em; }
+
+        /* ── Header ── */
+        .game-header {
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+            padding: 18px 20px 10px;
+        }
+        .game-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.6rem, 6vw, 2.2rem);
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: var(--text);
+        }
+        .game-names {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(0.8rem, 3vw, 1rem);
+            color: var(--gold-dark);
+            letter-spacing: 0.3em;
+            margin-top: 2px;
+        }
+
+        /* ── Score bar ── */
+        .score-bar {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 16px;
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            font-family: var(--pixel);
+        }
+        .score-item { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+        .score-label {
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            color: var(--gray);
+            text-transform: uppercase;
+        }
+        .score-value { color: var(--text); font-size: clamp(0.85rem, 3vw, 1rem); }
+        .score-value.gold-shine { color: var(--gold-dark); }
+
+        /* ── Canvas wrapper ── */
+        .canvas-wrap {
+            width: 100%;
+            max-width: 480px;
+            padding: 0 12px;
+            position: relative;
+        }
+        #gameCanvas {
+            display: block;
+            width: 100%;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            border: 2px solid var(--gold);
+            border-radius: 4px;
+            background: #fff;
+            touch-action: none;
+        }
+
+        /* ── Overlay panels ── */
+        .overlay {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(249,247,242,0.97);
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            padding: 24px 28px;
+            text-align: center;
+            width: 80%;
+            max-width: 320px;
+            z-index: 50;
+            display: none;
+        }
+        .overlay.show { display: block; }
+
+        .overlay-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            margin-bottom: 6px;
+        }
+        .overlay-sub {
+            font-size: 0.7rem;
+            color: var(--gray);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            font-family: var(--pixel);
+        }
+        .overlay-score {
+            font-family: var(--pixel);
+            font-size: 1.4rem;
+            color: var(--gold-dark);
+            margin-bottom: 4px;
+        }
+        .overlay-best {
+            font-family: var(--pixel);
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+        .rank-badge {
+            display: inline-block;
+            font-family: var(--pixel);
+            font-size: 0.8rem;
+            padding: 4px 14px;
+            border: 1px solid var(--gold);
+            border-radius: 2px;
+            color: var(--gold-dark);
+            margin-bottom: 18px;
+            letter-spacing: 0.1em;
+        }
+
+        /* Start screen instructions */
+        .how-to {
+            font-size: 0.72rem;
+            color: var(--gray);
+            line-height: 2;
+            margin-bottom: 16px;
+            font-family: var(--pixel);
+        }
+        .how-to span { color: var(--text); }
+
+        /* ── Buttons ── */
+        .btn {
+            display: inline-block;
+            padding: 10px 26px;
+            font-size: 0.78rem;
+            font-family: var(--pixel);
+            letter-spacing: 0.1em;
+            border-radius: 2px;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.15s, box-shadow 0.15s;
+            text-decoration: none;
+            margin: 4px;
+        }
+        .btn:active { transform: translateY(1px); }
+        .btn-primary {
+            background: var(--gold);
+            color: #fff;
+        }
+        .btn-primary:hover { background: var(--gold-dark); box-shadow: 0 4px 12px rgba(198,180,60,0.35); }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold-dark);
+        }
+        .btn-outline:hover { background: rgba(230,211,112,0.08); }
+
+        /* ── Footer bar ── */
+        .game-footer {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px 14px;
+        }
+        .hint-text {
+            font-size: 0.65rem;
+            color: var(--gray);
+            font-family: var(--pixel);
+            letter-spacing: 0.05em;
+        }
+        .sound-btn {
+            background: none;
+            border: 1px solid var(--gold);
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 0.65rem;
+            color: var(--gold-dark);
+            font-family: var(--pixel);
+            padding: 4px 8px;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Combo flash ── */
+        #comboFlash {
+            position: absolute;
+            top: 12px; right: 16px;
+            font-family: var(--pixel);
+            font-size: clamp(0.7rem, 2.5vw, 0.85rem);
+            color: var(--gold-dark);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            text-shadow: 0 1px 4px rgba(198,180,60,0.4);
+        }
+        #comboFlash.show { opacity: 1; }
+
+        /* ── Pixel heart decoration ── */
+        .pixel-hearts {
+            font-size: 0.7rem;
+            color: var(--sakura);
+            letter-spacing: 0.2em;
+            margin: 2px 0;
+            filter: drop-shadow(0 1px 2px rgba(253,221,230,0.5));
+        }
+
+        /* ── Level badge ── */
+        #levelBadge {
+            position: absolute;
+            top: 10px; left: 12px;
+            font-family: var(--pixel);
+            font-size: 0.62rem;
+            color: var(--gray);
+            letter-spacing: 0.05em;
+            pointer-events: none;
+        }
+
+        /* ── Small "NEW BEST" badge ── */
+        #newBestBadge {
+            display: none;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--pixel);
+            font-size: 0.62rem;
+            background: var(--gold);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 2px;
+            pointer-events: none;
+            z-index: 30;
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-header">
+    <div class="game-title">Wedding Jump</div>
+    <div class="pixel-hearts">♥ ♥ ♥</div>
+    <div class="game-names">RYŌ &amp; MIHIRO · 2026.04.04</div>
+</div>
+
+<!-- Score bar -->
+<div class="score-bar">
+    <div class="score-item">
+        <span class="score-label">Score</span>
+        <span class="score-value px" id="scoreDisplay">0</span>
+    </div>
+    <div class="score-item">
+        <span class="score-label">Level</span>
+        <span class="score-value px gold-shine" id="levelDisplay">1</span>
+    </div>
+    <div class="score-item">
+        <span class="score-label">Best</span>
+        <span class="score-value px" id="bestDisplay">0</span>
+    </div>
+    <div class="score-item">
+        <span class="score-label">Lives</span>
+        <span class="score-value px" id="livesDisplay">♥♥♥</span>
+    </div>
+</div>
+
+<!-- Canvas -->
+<div class="canvas-wrap">
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Combo flash -->
+    <div id="comboFlash">COMBO x<span id="comboNum">2</span></div>
+    <div id="levelBadge">LV <span id="lvBadgeNum">1</span></div>
+    <div id="newBestBadge">NEW BEST!</div>
+
+    <!-- START overlay -->
+    <div class="overlay show" id="startScreen">
+        <div class="overlay-title">Wedding Jump</div>
+        <div class="overlay-sub">· Ryō &amp; Mihiro ·</div>
+        <div class="how-to">
+            <span>TAP</span> / <span>SPACE</span> = ジャンプ<br>
+            2連続タップ = 二段ジャンプ<br>
+            障害物を避けてスコアを稼ごう！<br>
+            ハートを3つ持っている。全部なくなるとゲームオーバー。
+        </div>
+        <button class="btn btn-primary" id="startBtn">START GAME</button>
+    </div>
+
+    <!-- GAME OVER overlay -->
+    <div class="overlay" id="gameOverScreen">
+        <div class="overlay-title">Game Over</div>
+        <div class="overlay-sub">HAPPY WEDDING!</div>
+        <div class="overlay-score px" id="finalScore">0</div>
+        <div class="overlay-best px" id="finalBest"></div>
+        <div class="rank-badge" id="rankBadge">GUEST</div>
+        <br>
+        <button class="btn btn-primary" id="retryBtn">RETRY</button>
+        <a href="index.html" class="btn btn-outline">招待状へ</a>
+    </div>
+
+</div>
+
+<!-- LEVEL UP overlay — fixed to viewport, always visible on any screen size -->
+<div id="levelUpScreen" style="
+    display:none;
+    position:fixed;
+    top:50%; left:50%;
+    transform:translate(-50%,-60%);
+    background:rgba(249,247,242,0.97);
+    border:2px solid var(--gold);
+    border-radius:6px;
+    padding:28px 52px;
+    text-align:center;
+    z-index:9999;
+    box-shadow:0 8px 32px rgba(198,180,60,0.25);
+    pointer-events:none;
+">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;letter-spacing:0.15em;color:#2C2C2C;">Level Up!</div>
+    <div id="levelUpNum" style="font-family:'Courier New',monospace;font-size:3rem;color:#c8b84a;margin:8px 0 4px;line-height:1;">2</div>
+    <div style="font-family:'Courier New',monospace;font-size:0.72rem;color:#b0a898;letter-spacing:0.3em;">— SPEED UP —</div>
+</div>
+
+<!-- Footer -->
+<div class="game-footer">
+    <div class="hint-text">スマホはタップ、PCはSPACE</div>
+    <button class="sound-btn" id="soundToggle">♪ ON</button>
+</div>
+
+<script>
+// =============================================
+//  Wedding Jump — Enhanced Retro Edition
+//  Ryō & Mihiro  2026.04.04
+// =============================================
+
+const canvas = document.getElementById('gameCanvas');
+const ctx    = canvas.getContext('2d');
+
+// Responsive canvas: use 360×540 logical pixels (9:6 ratio, portrait-friendly)
+const W = 360, H = 300;
+canvas.width  = W;
+canvas.height = H;
+
+// ─── Palette (matches style.css) ────────────────────────────────
+const C = {
+    bg:      '#FFFFFF',
+    ground:  '#e6d370',
+    gold:    '#e6d370',
+    goldDark:'#c8b84a',
+    sakura:  '#fddde6',
+    text:    '#2C2C2C',
+    gray:    '#c8c0b4',
+    darkGray:'#888',
+    ivory:   '#F9F7F2',
+    white:   '#FFFFFF',
+};
+
+// ─── Game State ──────────────────────────────────────────────────
+let score, bestScore, lives, level, combo, comboTimer, invincible, invTimer;
+let gameState; // 'idle' | 'playing' | 'dead' | 'levelup'
+let frameCount, obstacleTimer, fallingTimer, petalsArr, particles, floatingTexts;
+let groundObstacles, airObstacles;
+let soundOn = true;
+
+// Best score persistence
+function loadBest() {
+    try { return parseInt(localStorage.getItem('wj_best') || '0'); } catch(e){ return 0; }
+}
+function saveBest(v) {
+    try { localStorage.setItem('wj_best', String(v)); } catch(e){}
+}
+
+// ─── AudioContext for simple retro beeps ────────────────────────
+let audioCtx = null;
+function ensureAudio() {
+    if (!audioCtx) {
+        try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){}
+    }
+    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+}
+function beep(freq, dur, type='square', vol=0.18) {
+    if (!soundOn || !audioCtx) return;
+    try {
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.connect(g); g.connect(audioCtx.destination);
+        o.type = type; o.frequency.value = freq;
+        g.gain.setValueAtTime(vol, audioCtx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+        o.start(); o.stop(audioCtx.currentTime + dur);
+    } catch(e){}
+}
+function sfxJump()   { beep(520, 0.08); setTimeout(()=>beep(660,0.06),60); }
+function sfxDouble() { beep(660,0.06); setTimeout(()=>beep(880,0.07),50); setTimeout(()=>beep(1040,0.08),110); }
+function sfxHit()    { beep(180,0.15,'sawtooth',0.22); }
+function sfxCombo()  { beep(880,0.05); setTimeout(()=>beep(1100,0.07),60); }
+function sfxLevelUp(){ [880,1100,1320,1760].forEach((f,i)=>setTimeout(()=>beep(f,0.1),i*80)); }
+function sfxDead()   { [440,330,220].forEach((f,i)=>setTimeout(()=>beep(f,0.18,'sawtooth',0.2),i*100)); }
+
+// ─── Player ─────────────────────────────────────────────────────
+const GROUND_Y = H - 24; // ground line y
+
+const player = {
+    x: 55, y: GROUND_Y, w: 22, h: 22,
+    dy: 0,
+    jumpsLeft: 2,
+    grounded: true,
+    jumpForce: -10.5,
+
+    get cx() { return this.x + this.w/2; },
+    get cy() { return this.y + this.h/2; },
+    get bottom() { return this.y + this.h; },
+
+    reset() {
+        this.y = GROUND_Y - this.h;
+        this.dy = 0;
+        this.jumpsLeft = 2;
+        this.grounded = true;
+    },
+    jump() {
+        if (this.jumpsLeft > 0) {
+            const dbl = this.jumpsLeft === 1;
+            this.dy = this.jumpForce * (dbl ? 0.82 : 1);
+            this.jumpsLeft--;
+            this.grounded = false;
+            spawnParticles(this.cx, this.bottom, dbl ? C.gold : C.sakura, dbl ? 6 : 4);
+            if (dbl) sfxDouble(); else sfxJump();
+        }
+    },
+    update() {
+        const GRAVITY = 0.55;
+        this.dy = Math.min(this.dy + GRAVITY, 14);
+        this.y += this.dy;
+        if (this.y + this.h >= GROUND_Y) {
+            this.y = GROUND_Y - this.h;
+            this.dy = 0;
+            this.grounded = true;
+            this.jumpsLeft = 2;
+        }
+    },
+    draw() {
+        // Pixel heart character
+        const blink = invincible && Math.floor(frameCount/4)%2===0;
+        if (blink) { ctx.globalAlpha = 0.35; }
+
+        const x = Math.round(this.x), y = Math.round(this.y);
+        const s = this.w; // 22px
+
+        // Shadow
+        ctx.fillStyle = 'rgba(0,0,0,0.07)';
+        ctx.beginPath();
+        ctx.ellipse(x + s/2, GROUND_Y + 2, s*0.45, 3, 0, 0, Math.PI*2);
+        ctx.fill();
+
+        // Draw pixelated heart (using canvas rect grid, 3px per "pixel")
+        const px = 3;
+        const grid = [
+            [0,1,1,0,1,1,0],
+            [1,1,1,1,1,1,1],
+            [1,1,1,1,1,1,1],
+            [0,1,1,1,1,1,0],
+            [0,0,1,1,1,0,0],
+            [0,0,0,1,0,0,0],
+        ];
+        const offX = x + Math.round((s - grid[0].length*px)/2);
+        const offY = y + Math.round((s - grid.length*px)/2);
+        ctx.fillStyle = '#f48ca0'; // soft rose
+        for (let r=0; r<grid.length; r++) {
+            for (let c=0; c<grid[r].length; c++) {
+                if (grid[r][c]) {
+                    ctx.fillRect(offX + c*px, offY + r*px, px, px);
+                }
+            }
+        }
+        // Highlight pixel
+        ctx.fillStyle = '#ffb8c6';
+        ctx.fillRect(offX + px, offY, px, px);
+
+        ctx.globalAlpha = 1;
+    }
+};
+
+// ─── Obstacles ───────────────────────────────────────────────────
+function baseSpeed() {
+    return 2.8 + level * 0.55 + score * 0.012;
+}
+
+const OBS_TYPES = [
+    // ground obstacles
+    { id:'cake',    w:22, h:26, ground:true  },
+    { id:'bouquet', w:20, h:24, ground:true  },
+    { id:'bell',    w:18, h:22, ground:true  },
+    { id:'tall',    w:14, h:36, ground:true  },   // tall narrow
+    // air obstacles (falling)
+    { id:'petal',   w:16, h:16, ground:false },
+    { id:'ring',    w:18, h:18, ground:false },
+];
+
+function pickGroundType() {
+    const pool = OBS_TYPES.filter(t=>t.ground);
+    return pool[Math.floor(Math.random()*pool.length)];
+}
+function pickAirType() {
+    const pool = OBS_TYPES.filter(t=>!t.ground);
+    return pool[Math.floor(Math.random()*pool.length)];
+}
+
+function createGroundObs() {
+    const t = pickGroundType();
+    const sp = baseSpeed() + (Math.random()*0.6-0.3);
+    groundObstacles.push({
+        x: W + 10, y: GROUND_Y - t.h,
+        w: t.w, h: t.h,
+        speed: sp,
+        type: t.id, scored: false
+    });
+}
+
+function createAirObs() {
+    if (level < 2) return;
+    const t = pickAirType();
+    const x = 80 + Math.random()*(W - 100 - t.w);
+    airObstacles.push({
+        x, y: -t.h,
+        w: t.w, h: t.h,
+        speed: 1.8 + level * 0.3 + Math.random()*0.6,
+        type: t.id
+    });
+}
+
+// ─── Draw helpers ────────────────────────────────────────────────
+function drawPixelCake(x, y, w, h) {
+    // base
+    ctx.fillStyle = C.gold;
+    ctx.fillRect(x, y + h*0.45, w, h*0.55);
+    // middle tier
+    ctx.fillStyle = C.goldDark;
+    ctx.fillRect(x+2, y + h*0.25, w-4, h*0.22);
+    // top
+    ctx.fillStyle = C.ivory;
+    ctx.fillRect(x+4, y, w-8, h*0.27);
+    // candle
+    ctx.fillStyle = C.text;
+    ctx.fillRect(x + w/2-1, y-4, 2, 5);
+    ctx.fillStyle = '#FFA040';
+    ctx.fillRect(x + w/2-1, y-7, 2, 3);
+    // frosting line
+    ctx.fillStyle = C.white;
+    ctx.fillRect(x, y + h*0.45 - 1, w, 2);
+    ctx.fillRect(x+2, y + h*0.25 - 1, w-4, 2);
+}
+
+function drawPixelBouquet(x, y, w, h) {
+    // stem
+    ctx.fillStyle = '#7db87d';
+    ctx.fillRect(x + w/2 - 1, y + h*0.55, 2, h*0.45);
+    // flowers
+    const fc = [ [x+w*0.25,y+h*0.25], [x+w*0.75,y+h*0.25], [x+w*0.5,y+h*0.1], [x+w*0.15,y+h*0.5],[x+w*0.85,y+h*0.5] ];
+    fc.forEach(([fx,fy])=>{
+        ctx.fillStyle = '#f48ca0';
+        ctx.beginPath(); ctx.arc(fx,fy,4,0,Math.PI*2); ctx.fill();
+        ctx.fillStyle = C.goldLight || '#f5e99a';
+        ctx.beginPath(); ctx.arc(fx,fy,1.5,0,Math.PI*2); ctx.fill();
+    });
+    // wrap ribbon
+    ctx.fillStyle = C.gold;
+    ctx.fillRect(x + w*0.25, y + h*0.55, w*0.5, 3);
+}
+
+function drawPixelBell(x, y, w, h) {
+    ctx.fillStyle = C.gold;
+    // dome
+    ctx.beginPath();
+    ctx.arc(x+w/2, y+h*0.45, w*0.45, Math.PI, 0);
+    ctx.lineTo(x+w, y+h*0.45);
+    ctx.lineTo(x+w, y+h*0.9);
+    ctx.lineTo(x, y+h*0.9);
+    ctx.lineTo(x, y+h*0.45);
+    ctx.closePath();
+    ctx.fill();
+    // clapper
+    ctx.fillStyle = C.goldDark;
+    ctx.beginPath(); ctx.arc(x+w/2, y+h*0.88, 3, 0, Math.PI*2); ctx.fill();
+    // star on top
+    ctx.fillStyle = C.goldLight || '#f5e99a';
+    ctx.beginPath(); ctx.arc(x+w/2, y+3, 3, 0, Math.PI*2); ctx.fill();
+    // shadow line
+    ctx.fillStyle = C.goldDark;
+    ctx.fillRect(x, y+h*0.9, w, 2);
+}
+
+function drawPixelTall(x, y, w, h) {
+    ctx.fillStyle = C.gold;
+    ctx.fillRect(x, y, w, h);
+    ctx.fillStyle = C.goldDark;
+    ctx.fillRect(x, y, w, 4);
+    ctx.fillStyle = C.white;
+    ctx.fillRect(x+3, y+8, 3, h-14);
+}
+
+function drawPixelPetal(x, y, w, h) {
+    ctx.fillStyle = C.sakura;
+    const r = w/2;
+    ctx.save();
+    ctx.translate(x+r, y+r);
+    ctx.rotate(frameCount * 0.04);
+    for (let i=0; i<5; i++) {
+        ctx.save();
+        ctx.rotate(i * Math.PI*2/5);
+        ctx.beginPath();
+        ctx.ellipse(0, -r*0.6, r*0.35, r*0.6, 0, 0, Math.PI*2);
+        ctx.fill();
+        ctx.restore();
+    }
+    ctx.fillStyle = '#f48ca0';
+    ctx.beginPath(); ctx.arc(0,0,2,0,Math.PI*2); ctx.fill();
+    ctx.restore();
+}
+
+function drawPixelRing(x, y, w, h) {
+    const cx2 = x+w/2, cy2 = y+h/2, r = w/2;
+    // outer ring
+    ctx.strokeStyle = C.gold;
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(cx2, cy2, r-2, 0, Math.PI*2); ctx.stroke();
+    // inner ring
+    ctx.strokeStyle = C.goldDark;
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(cx2, cy2, r-5, 0, Math.PI*2); ctx.stroke();
+    // diamond
+    ctx.fillStyle = '#b0d8ff';
+    ctx.beginPath();
+    ctx.moveTo(cx2, cy2-4); ctx.lineTo(cx2+3,cy2); ctx.lineTo(cx2,cy2+4); ctx.lineTo(cx2-3,cy2);
+    ctx.closePath(); ctx.fill();
+    ctx.lineWidth = 1;
+}
+
+function drawObstacle(o) {
+    switch(o.type) {
+        case 'cake':    drawPixelCake   (o.x, o.y, o.w, o.h); break;
+        case 'bouquet': drawPixelBouquet(o.x, o.y, o.w, o.h); break;
+        case 'bell':    drawPixelBell   (o.x, o.y, o.w, o.h); break;
+        case 'tall':    drawPixelTall   (o.x, o.y, o.w, o.h); break;
+        case 'petal':   drawPixelPetal  (o.x, o.y, o.w, o.h); break;
+        case 'ring':    drawPixelRing   (o.x, o.y, o.w, o.h); break;
+    }
+}
+
+// ─── Particles ───────────────────────────────────────────────────
+function spawnParticles(cx, cy, color, count=6) {
+    for (let i=0; i<count; i++) {
+        const angle = Math.random()*Math.PI*2;
+        const spd   = 1 + Math.random()*2.5;
+        particles.push({
+            x: cx, y: cy,
+            vx: Math.cos(angle)*spd,
+            vy: Math.sin(angle)*spd - 1.5,
+            life: 1, decay: 0.04 + Math.random()*0.04,
+            r: 2 + Math.random()*2,
+            color
+        });
+    }
+}
+
+function updateParticles() {
+    for (let i=particles.length-1; i>=0; i--) {
+        const p = particles[i];
+        p.x += p.vx; p.y += p.vy; p.vy += 0.12; p.life -= p.decay;
+        if (p.life <= 0) { particles.splice(i,1); continue; }
+        ctx.globalAlpha = p.life;
+        ctx.fillStyle   = p.color;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+}
+
+// ─── Floating texts (score popups) ──────────────────────────────
+function addFloatingText(x, y, text, color=C.goldDark) {
+    floatingTexts.push({ x, y, text, color, life:1, vy:-0.7 });
+}
+function updateFloatingTexts() {
+    for (let i=floatingTexts.length-1; i>=0; i--) {
+        const t = floatingTexts[i];
+        t.y += t.vy; t.life -= 0.025;
+        if (t.life <= 0) { floatingTexts.splice(i,1); continue; }
+        ctx.globalAlpha = t.life;
+        ctx.fillStyle   = t.color;
+        ctx.font        = 'bold 9px "Courier New"';
+        ctx.textAlign   = 'center';
+        ctx.fillText(t.text, t.x, t.y);
+    }
+    ctx.globalAlpha = 1;
+    ctx.textAlign   = 'left';
+}
+
+// ─── Background petals (ambient) ─────────────────────────────────
+function initPetals() {
+    petalsArr = [];
+    for (let i=0; i<18; i++) {
+        petalsArr.push({
+            x: Math.random()*W,
+            y: Math.random()*H,
+            r: 2 + Math.random()*2,
+            spd: 0.25 + Math.random()*0.4,
+            drift: (Math.random()-0.5)*0.3,
+            rot: Math.random()*Math.PI*2,
+            rotSpd: (Math.random()-0.5)*0.03,
+            alpha: 0.15 + Math.random()*0.25
+        });
+    }
+}
+function drawPetals() {
+    petalsArr.forEach(p => {
+        p.y += p.spd; p.x += p.drift; p.rot += p.rotSpd;
+        if (p.y > H+6) { p.y = -6; p.x = Math.random()*W; }
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = C.sakura;
+        ctx.beginPath();
+        ctx.ellipse(0,0,p.r,p.r*1.6,0,0,Math.PI*2);
+        ctx.fill();
+        ctx.restore();
+    });
+    ctx.globalAlpha = 1;
+}
+
+// ─── Background ──────────────────────────────────────────────────
+function drawBackground() {
+    ctx.fillStyle = C.bg;
+    ctx.fillRect(0, 0, W, H);
+
+    // Faint gold grid lines (retro feel)
+    ctx.strokeStyle = 'rgba(230,211,112,0.06)';
+    ctx.lineWidth = 1;
+    for (let y=0; y<H; y+=16) {
+        ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke();
+    }
+
+    // Scanlines (very subtle, retro CRT)
+    for (let y=0; y<H; y+=2) {
+        ctx.fillStyle = 'rgba(0,0,0,0.018)';
+        ctx.fillRect(0, y, W, 1);
+    }
+}
+
+function drawGround() {
+    // Gold ground line (double)
+    ctx.fillStyle = C.gold;
+    ctx.fillRect(0, GROUND_Y, W, 3);
+    ctx.fillStyle = C.goldDark;
+    ctx.fillRect(0, GROUND_Y+3, W, 1);
+
+    // Dotted pattern below
+    ctx.fillStyle = 'rgba(230,211,112,0.15)';
+    for (let x=0; x<W; x+=8) {
+        ctx.fillRect(x, GROUND_Y+5, 3, 1);
+    }
+}
+
+// ─── HUD (in-canvas) ─────────────────────────────────────────────
+function drawHUD() {
+    // Thin top border
+    ctx.fillStyle = 'rgba(230,211,112,0.3)';
+    ctx.fillRect(0, 0, W, 1);
+}
+
+// ─── Collision ───────────────────────────────────────────────────
+const PAD = 3; // forgiveness padding
+function collides(o) {
+    return (
+        player.x + PAD < o.x + o.w - PAD &&
+        player.x + player.w - PAD > o.x + PAD &&
+        player.y + PAD < o.y + o.h - PAD &&
+        player.y + player.h - PAD > o.y + PAD
+    );
+}
+
+// ─── Game logic ──────────────────────────────────────────────────
+function resetGame() {
+    score = 0; lives = 3; level = 1; combo = 0; comboTimer = 0;
+    invincible = false; invTimer = 0;
+    frameCount = 0; obstacleTimer = 0; fallingTimer = 0;
+    groundObstacles = []; airObstacles = []; particles = []; floatingTexts = [];
+    player.reset();
+    bestScore = loadBest();
+    updateHUD();
+    hideLevelUp();
+}
+
+function updateHUD() {
+    document.getElementById('scoreDisplay').textContent = score;
+    document.getElementById('levelDisplay').textContent = level;
+    document.getElementById('bestDisplay').textContent  = bestScore;
+    const hearts = ['', '♥', '♥♥', '♥♥♥'][Math.max(0,Math.min(3,lives))];
+    document.getElementById('livesDisplay').textContent = hearts;
+    document.getElementById('lvBadgeNum').textContent = level;
+}
+
+function takeHit() {
+    if (invincible) return;
+    lives--;
+    sfxHit();
+    combo = 0;
+    invincible = true;
+    invTimer = 120; // ~2 sec at 60fps
+    spawnParticles(player.cx, player.cy, '#f48ca0', 10);
+    updateHUD();
+    if (lives <= 0) {
+        endGame();
+    }
+}
+
+function endGame() {
+    gameState = 'dead';
+    sfxDead();
+    if (score > bestScore) {
+        bestScore = score;
+        saveBest(bestScore);
+        document.getElementById('newBestBadge').style.display = 'block';
+    }
+    setTimeout(showGameOver, 600);
+}
+
+function showGameOver() {
+    document.getElementById('finalScore').textContent = 'SCORE  ' + String(score).padStart(5,'0');
+    document.getElementById('finalBest').textContent  = 'BEST   ' + String(bestScore).padStart(5,'0');
+    document.getElementById('rankBadge').textContent  = getRank(score);
+    document.getElementById('gameOverScreen').classList.add('show');
+}
+
+function getRank(s) {
+    if (s >= 80)  return '♥ WEDDING CHAMPION ♥';
+    if (s >= 50)  return 'HONEYMOON CLASS';
+    if (s >= 30)  return 'FLOWER SHOWER';
+    if (s >= 15)  return 'CHAMPAGNE TOAST';
+    return 'GUEST';
+}
+
+function hideLevelUp() {
+    document.getElementById('levelUpScreen').style.display = 'none';
+}
+function showLevelUp() {
+    document.getElementById('levelUpNum').textContent = level;
+    document.getElementById('levelUpScreen').style.display = 'block';
+    setTimeout(hideLevelUp, 1200);
+    sfxLevelUp();
+}
+
+// Level thresholds
+const LEVEL_THRESHOLDS = [0, 10, 22, 36, 52, 70, 90, 115, 142];
+function checkLevel() {
+    let newLevel = 1;
+    for (let i=LEVEL_THRESHOLDS.length-1; i>=0; i--) {
+        if (score >= LEVEL_THRESHOLDS[i]) { newLevel = i+1; break; }
+    }
+    if (newLevel > level) {
+        level = newLevel;
+        showLevelUp();
+        spawnParticles(player.cx, player.cy, C.gold, 16);
+    }
+    updateHUD();
+}
+
+// ─── Spawn intervals (slower at first, faster later) ────────────
+function groundInterval() {
+    return Math.max(38, 90 - level*7 - score*0.15);
+}
+function airInterval() {
+    return Math.max(40, 120 - level*10);
+}
+
+// ─── Main loop ────────────────────────────────────────────────────
+let animId = null;
+function loop() {
+    if (gameState !== 'playing') return;
+    animId = requestAnimationFrame(loop);
+    frameCount++;
+
+    // ── Draw background
+    drawBackground();
+    drawPetals();
+    drawGround();
+    drawHUD();
+
+    // ── Invincibility countdown
+    if (invincible) {
+        invTimer--;
+        if (invTimer <= 0) invincible = false;
+    }
+
+    // ── Combo timer
+    if (comboTimer > 0) { comboTimer--; if(comboTimer===0) combo=0; }
+
+    // ── Player
+    player.update();
+    player.draw();
+
+    // ── Spawn ground obstacles
+    obstacleTimer++;
+    if (obstacleTimer >= groundInterval()) {
+        createGroundObs();
+        obstacleTimer = 0;
+    }
+
+    // ── Spawn air obstacles (level 2+)
+    if (level >= 2) {
+        fallingTimer++;
+        if (fallingTimer >= airInterval()) {
+            createAirObs();
+            fallingTimer = 0;
+        }
+    }
+
+    // ── Update ground obstacles
+    for (let i=groundObstacles.length-1; i>=0; i--) {
+        const o = groundObstacles[i];
+        o.x -= o.speed;
+        drawObstacle(o);
+
+        // Score when passed
+        if (!o.scored && o.x + o.w < player.x) {
+            o.scored = true;
+            score++;
+            combo++;
+            comboTimer = 90;
+            addFloatingText(player.cx, player.y - 4, '+1', C.goldDark);
+            if (combo >= 3) {
+                score += Math.floor(combo/3);
+                addFloatingText(player.cx+10, player.y-14, 'COMBO!', '#d08a50');
+                sfxCombo();
+                showComboFlash(combo);
+            }
+            checkLevel();
+            updateHUD();
+        }
+
+        if (collides(o)) { takeHit(); groundObstacles.splice(i,1); continue; }
+        if (o.x + o.w < -10) { groundObstacles.splice(i,1); }
+    }
+
+    // ── Update air obstacles
+    for (let i=airObstacles.length-1; i>=0; i--) {
+        const o = airObstacles[i];
+        o.y += o.speed;
+        drawObstacle(o);
+        if (collides(o)) { takeHit(); airObstacles.splice(i,1); continue; }
+        if (o.y > H+10) { airObstacles.splice(i,1); }
+    }
+
+    // ── Particles & floating texts
+    updateParticles();
+    updateFloatingTexts();
+}
+
+// ─── Combo flash UI ─────────────────────────────────────────────
+let comboFlashTimeout = null;
+function showComboFlash(c) {
+    const el = document.getElementById('comboFlash');
+    document.getElementById('comboNum').textContent = c;
+    el.classList.add('show');
+    clearTimeout(comboFlashTimeout);
+    comboFlashTimeout = setTimeout(()=>el.classList.remove('show'), 900);
+}
+
+// ─── Start / Retry ────────────────────────────────────────────────
+function startGame() {
+    ensureAudio();
+    document.getElementById('startScreen').classList.remove('show');
+    document.getElementById('gameOverScreen').classList.remove('show');
+    document.getElementById('newBestBadge').style.display = 'none';
+    resetGame();
+    gameState = 'playing';
+    initPetals();
+    loop();
+}
+
+// ─── Controls ─────────────────────────────────────────────────────
+function handleJump() {
+    ensureAudio();
+    if (gameState === 'playing') {
+        player.jump();
+    } else if (gameState === 'idle') {
+        startGame();
+    }
+}
+
+window.addEventListener('keydown', e => {
+    if (e.code === 'Space') { e.preventDefault(); handleJump(); }
+});
+
+canvas.addEventListener('touchstart', e => {
+    e.preventDefault(); handleJump();
+}, { passive: false });
+
+canvas.addEventListener('mousedown', () => handleJump());
+
+document.getElementById('startBtn').addEventListener('click', startGame);
+document.getElementById('retryBtn').addEventListener('click', startGame);
+
+document.getElementById('soundToggle').addEventListener('click', function() {
+    soundOn = !soundOn;
+    this.textContent = soundOn ? '♪ ON' : '♪ OFF';
+    if (soundOn) ensureAudio();
+});
+
+// ─── Draw idle screen ────────────────────────────────────────────
+function drawIdleFrame() {
+    if (gameState !== 'idle') return;
+    requestAnimationFrame(drawIdleFrame);
+    frameCount++;
+    drawBackground();
+    drawPetals();
+    drawGround();
+
+    // Animate player bobbing
+    const bob = Math.sin(frameCount*0.07)*3;
+    player.y = GROUND_Y - player.h + bob;
+    player.draw();
+    player.y = GROUND_Y - player.h;
+}
+
+// ─── Init ─────────────────────────────────────────────────────────
+bestScore = loadBest();
+document.getElementById('bestDisplay').textContent = bestScore;
+gameState = 'idle';
+particles = []; floatingTexts = []; petalsArr = [];
+frameCount = 0;
+initPetals();
+drawIdleFrame();
+</script>
+</body>
+</html>
+
+
+<!--
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wedding Jump - Ryō & Mihiro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&family=Cormorant+Garamond:ital,wght@0,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #F9F7F2;
+            --color-gold: #e6d370;
+            --color-sakura: #fddde6;
+            --color-text: #2C2C2C;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-jp: 'Noto Serif JP', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-jp);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            touch-action: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            font-weight: 300;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: var(--color-gold);
+            letter-spacing: 0.2em;
+        }
+
+        #gameCanvas {
+            background: #fff;
+            border: 2px solid var(--color-gold);
+            border-radius: 8px;
+            width: 100%;
+            touch-action: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .ui {
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--color-gold);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-jp);
+            margin: 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(230,211,112,0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--color-gold);
+            color: var(--color-gold);
+        }
+
+        .score-board {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid var(--color-gold);
+            display: none;
+            z-index: 100;
+            width: 80%;
+        }
+
+        .instruction {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Wedding Jump</h1>
+        <div class="subtitle">TAP TO JUMP</div>
+        <div class="score-board">Score: <span id="score">0</span></div>
+        
+        <canvas id="gameCanvas"></canvas>
+
+        <div id="gameOver">
+            <h2 style="margin-bottom: 10px;">Happy Wedding!</h2>
+            <p style="margin-bottom: 20px;">Score: <span id="finalScore">0</span></p>
+            <button class="btn" onclick="resetGame()">Retry</button>
+        </div>
+
+        <div class="ui">
+            <a href="index.html" class="btn btn-outline">招待状に戻る</a>
+        </div>
+        <p class="instruction">スマホはタップ、PCはスペースキーでジャンプ！</p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreElement = document.getElementById('score');
+        const gameOverDiv = document.getElementById('gameOver');
+        const finalScoreElement = document.getElementById('finalScore');
+
+        // Set fixed resolution but responsive display
+        canvas.width = 800;
+        canvas.height = 400;
+
+        let score = 0;
+        let gameActive = true;
+        let animationId;
+
+        const gravity = 1.0;
+        
+        const player = {
+            x: 80,
+            y: canvas.height - 100,
+            width: 50,
+            height: 50,
+            dy: 0,
+            jumpForce: -18,
+            grounded: false,
+            draw() {
+                // Draw a heart shape as the player
+                ctx.fillStyle = '#ffb6c1'; // Light pink
+                ctx.beginPath();
+                const x = this.x + this.width/2;
+                const y = this.y + this.height/2;
+                const size = 25;
+                ctx.moveTo(x, y + size/4);
+                ctx.bezierCurveTo(x, y - size/2, x - size, y - size/2, x - size, y + size/4);
+                ctx.bezierCurveTo(x - size, y + size, x, y + size*1.2, x, y + size*1.5);
+                ctx.bezierCurveTo(x, y + size*1.2, x + size, y + size, x + size, y + size/4);
+                ctx.bezierCurveTo(x + size, y - size/2, x, y - size/2, x, y + size/4);
+                ctx.fill();
+            },
+            jump() {
+                if (this.grounded) {
+                    this.dy = this.jumpForce;
+                    this.grounded = false;
+                }
+            },
+            update() {
+                if (!this.grounded) {
+                    this.dy += gravity;
+                }
+                this.y += this.dy;
+
+                if (this.y + this.height >= canvas.height - 20) {
+                    this.y = canvas.height - 20 - this.height;
+                    this.dy = 0;
+                    this.grounded = true;
+                }
+                this.draw();
+            }
+        };
+
+        const obstacles = [];
+        const fallingObstacles = [];
+        let obstacleTimer = 0;
+        let fallingTimer = 0;
+        let obstacleFrequency = 60;
+
+        function createObstacle() {
+            const types = ['cake', 'flower'];
+            const type = types[Math.floor(Math.random() * types.length)];
+            obstacles.push({
+                x: canvas.width,
+                y: canvas.height - 60,
+                width: 40,
+                height: 40,
+                speed: 8 + score / 4,
+                type: type,
+                draw() {
+                    ctx.fillStyle = this.type === 'cake' ? '#e6d370' : '#d8c360';
+                    ctx.fillRect(this.x, this.y, this.width, this.height);
+                    
+                    // Decorative line
+                    ctx.strokeStyle = '#fff';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(this.x, this.y + 10);
+                    ctx.lineTo(this.x + this.width, this.y + 10);
+                    ctx.stroke();
+
+                    // Emoji fallback representation
+                    ctx.font = '30px serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(this.type === 'cake' ? '🎂' : '🎁', this.x + this.width/2, this.y + this.height/2);
+                }
+            });
+        }
+
+        function createFallingObstacle() {
+            fallingObstacles.push({
+                x: Math.random() * (canvas.width - 40),
+                y: -50,
+                width: 35,
+                height: 35,
+                speed: 4 + score / 8,
+                draw() {
+                    ctx.fillStyle = '#fddde6'; // Sakura
+                    ctx.beginPath();
+                    ctx.arc(this.x + this.width/2, this.y + this.height/2, this.width/2, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.font = '24px serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText('🌸', this.x + this.width/2, this.y + this.height/2);
+                }
+            });
+        }
+
+        function update() {
+            if (!gameActive) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Ground
+            ctx.strokeStyle = '#e6d370';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(0, canvas.height - 20);
+            ctx.lineTo(canvas.width, canvas.height - 20);
+            ctx.stroke();
+
+            player.update();
+
+            obstacleTimer++;
+            if (obstacleTimer > obstacleFrequency) {
+                createObstacle();
+                obstacleTimer = 0;
+                obstacleFrequency = Math.max(25, 60 - score);
+            }
+
+            // Spawn falling obstacles after score 15
+            if (score > 15) {
+                fallingTimer++;
+                if (fallingTimer > Math.max(30, 80 - (score - 15) * 2)) {
+                    createFallingObstacle();
+                    fallingTimer = 0;
+                }
+            }
+
+            for (let i = obstacles.length - 1; i >= 0; i--) {
+                const obs = obstacles[i];
+                obs.x -= obs.speed;
+                obs.draw();
+
+                // Collision detection
+                if (
+                    player.x < obs.x + obs.width - 8 &&
+                    player.x + player.width - 8 > obs.x &&
+                    player.y < obs.y + obs.height - 8 &&
+                    player.y + player.height - 8 > obs.y
+                ) {
+                    endGame();
+                    return;
+                }
+
+                if (obs.x + obs.width < 0) {
+                    obstacles.splice(i, 1);
+                    score++;
+                    scoreElement.textContent = score;
+                }
+            }
+
+            for (let i = fallingObstacles.length - 1; i >= 0; i--) {
+                const fobs = fallingObstacles[i];
+                fobs.y += fobs.speed;
+                fobs.draw();
+
+                // Collision detection
+                if (
+                    player.x < fobs.x + fobs.width - 8 &&
+                    player.x + player.width - 8 > fobs.x &&
+                    player.y < fobs.y + fobs.height - 8 &&
+                    player.y + player.height - 8 > fobs.y
+                ) {
+                    endGame();
+                    return;
+                }
+
+                if (fobs.y > canvas.height) {
+                    fallingObstacles.splice(i, 1);
+                }
+            }
+
+            animationId = requestAnimationFrame(update);
+        }
+
+        function endGame() {
+            gameActive = false;
+            cancelAnimationFrame(animationId);
+            gameOverDiv.style.display = 'block';
+            finalScoreElement.textContent = score;
+        }
+
+        function resetGame() {
+            score = 0;
+            scoreElement.textContent = '0';
+            obstacles.length = 0;
+            fallingObstacles.length = 0;
+            player.y = canvas.height - 100;
+            player.dy = 0;
+            player.grounded = false;
+            gameActive = true;
+            gameOverDiv.style.display = 'none';
+            obstacleFrequency = 60;
+            obstacleTimer = 0;
+            fallingTimer = 0;
+            update();
+        }
+
+        // Controls
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') player.jump();
+        });
+
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            player.jump();
+        }, { passive: false });
+
+        canvas.addEventListener('mousedown', () => {
+            player.jump();
+        });
+
+        update();
+    </script>
+</body>
+</html>
