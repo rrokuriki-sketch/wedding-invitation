@@ -331,6 +331,7 @@
         <br>
         <button class="btn btn-primary" id="retryBtn">RETRY</button>
         <a href="index.html" class="btn btn-outline">招待状へ</a>
+<a href="indexphoto.html" class="btn btn-outline">フォトライブラリ</a>
     </div>
 
 </div>
@@ -848,6 +849,7 @@ function takeHit() {
 
 function endGame() {
     gameState = 'dead';
+    stopFinalBGM();
     sfxDead();
     if (score > bestScore) {
         bestScore = score;
@@ -892,6 +894,7 @@ function checkLevel() {
     if (newLevel > level) {
         level = newLevel;
         showLevelUp();
+        if(level >= 7){ playFinalBGM(); }
         spawnParticles(player.cx, player.cy, C.gold, 16);
     }
     updateHUD();
@@ -1063,6 +1066,61 @@ particles = []; floatingTexts = []; petalsArr = [];
 frameCount = 0;
 initPetals();
 drawIdleFrame();
+
+// ─── Final Stage BGM (Mario Style) ─────────────────────
+let finalBgmTimer = null;
+
+function playFinalBGM() {
+    if (!audioCtx || !soundOn) return;
+
+    stopFinalBGM();
+
+    const tempo = 140;
+    const beat = (60 / tempo) * 1000;
+
+    const melody = [
+        659,784,880,784,
+        659,523,659,784,
+        880,1047,988,880,
+        784,659,523,659,
+        784,880,988,880,
+        784,659,523,523,
+        659,784,880,988,
+        1047,988,880,0
+    ];
+
+    let i = 0;
+
+    finalBgmTimer = setInterval(() => {
+
+        if (!soundOn || !audioCtx) return;
+
+        const note = melody[i % melody.length];
+
+        if (note !== 0) {
+            beep(note, 0.15, "square", 0.09);
+        }
+
+        if (i % 2 === 0 && note !== 0) {
+            beep(note / 2, 0.18, "triangle", 0.05);
+        }
+
+        if (i % 4 === 0) {
+            beep(120, 0.05, "sawtooth", 0.03);
+        }
+
+        i++;
+
+    }, beat);
+}
+
+function stopFinalBGM() {
+    if (finalBgmTimer) {
+        clearInterval(finalBgmTimer);
+        finalBgmTimer = null;
+    }
+}
+
 </script>
 </body>
 </html>
@@ -1451,6 +1509,61 @@ drawIdleFrame();
         });
 
         update();
-    </script>
+    
+// ─── Final Stage BGM (Mario Style) ─────────────────────
+let finalBgmTimer = null;
+
+function playFinalBGM() {
+    if (!audioCtx || !soundOn) return;
+
+    stopFinalBGM();
+
+    const tempo = 140;
+    const beat = (60 / tempo) * 1000;
+
+    const melody = [
+        659,784,880,784,
+        659,523,659,784,
+        880,1047,988,880,
+        784,659,523,659,
+        784,880,988,880,
+        784,659,523,523,
+        659,784,880,988,
+        1047,988,880,0
+    ];
+
+    let i = 0;
+
+    finalBgmTimer = setInterval(() => {
+
+        if (!soundOn || !audioCtx) return;
+
+        const note = melody[i % melody.length];
+
+        if (note !== 0) {
+            beep(note, 0.15, "square", 0.09);
+        }
+
+        if (i % 2 === 0 && note !== 0) {
+            beep(note / 2, 0.18, "triangle", 0.05);
+        }
+
+        if (i % 4 === 0) {
+            beep(120, 0.05, "sawtooth", 0.03);
+        }
+
+        i++;
+
+    }, beat);
+}
+
+function stopFinalBGM() {
+    if (finalBgmTimer) {
+        clearInterval(finalBgmTimer);
+        finalBgmTimer = null;
+    }
+}
+
+</script>
 </body>
 </html>
