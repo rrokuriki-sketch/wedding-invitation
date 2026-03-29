@@ -109,7 +109,8 @@ body {
    =========================== */
 
 .password-page {
-    min-height: 100vh;
+    min-height: auto;
+    padding: 10vh 0 4rem;
     display: flex;
     align-items: center;
     justify-content: center;
