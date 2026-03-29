@@ -1139,18 +1139,18 @@ function playFinalBGM() {
 
         // メロディ：少し柔らかい音
         if (note !== 0) {
-            beep(note, 0.25, "triangle", 0.1);
+            beep(note, 0.25, "triangle", 0.3);
         }
 
         // ベース：動くベースラインでグルーヴを出す
         const baseNotes = [329, 392, 440, 293]; // E2, G2, A2, D2
         if (i % 8 === 0) {
-            beep(baseNotes[(i/8) % 4] / 2, 0.4, "sine", 0.12);
+            beep(baseNotes[(i/8) % 4] / 2, 0.4, "sine", 0.36);
         }
 
         // ドラム：ハイハット的な刻み
         if (i % 2 === 0) {
-            beep(2000, 0.01, "sawtooth", 0.02);
+            beep(2000, 0.01, "sawtooth", 0.06);
         }
 
         i++;
