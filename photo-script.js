@@ -56,7 +56,7 @@ function initPasswordForm() {
         'M_CHILDHOOD': 'mihiro-child.html',
         'akb48': 'mihiro-junior.html',
         'hotcake': 'mihiro-highschool.html',
-        'variety': 'mihiro-univ.html',
+        'TGU': 'mihiro-univ.html',
         'gorigori': 'mihiro-king.html',
         'atami': 'mihiro-purin.html',
         'duck': 'mihiro-aflac.html',
